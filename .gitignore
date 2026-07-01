@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# source photo library (full-res assets from SharePoint, not for deploy)
+/assets/photo-library
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
