@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,19 +22,27 @@ const featuredPrograms = [
 ];
 
 const galleryImages = [
-  { src: "/images/gallery/img_6702.jpg", alt: "Kind Sisters community event" },
-  { src: "/images/gallery/img_6769.jpg", alt: "Volunteers supporting families" },
-  { src: "/images/gallery/img_7828.jpg", alt: "Relief bags being prepared" },
-  { src: "/images/gallery/march-2025.jpg", alt: "March 2025 community gathering" },
-  { src: "/images/gallery/primary-school-delivery.jpeg", alt: "Delivering essentials to a primary school" },
-  { src: "/images/gallery/40-families-first-ever.jpg", alt: "40 families supported for the first time" },
-  { src: "/images/gallery/bags-ready-for-delivery.jpeg", alt: "Bags packed and ready for delivery" },
-  { src: "/images/gallery/img_1898.jpg", alt: "Kind Sisters volunteers in action" },
-  { src: "/images/gallery/kellie.jpeg", alt: "Community member Kellie" },
-  { src: "/images/gallery/img_7887.jpg", alt: "Families receiving support" },
-  { src: "/images/gallery/img_7942.jpg", alt: "Community connection event" },
-  { src: "/images/gallery/hamper.jpg", alt: "Hygiene essentials hamper" },
+  { src: "/images/gallery/img_8046.jpg", alt: "Women's Community Connect group with the Perth skyline behind them", width: 1600, height: 1067 },
+  { src: "/images/gallery/img_7887.jpg", alt: "Families receiving support at a community event", width: 800, height: 1200 },
+  { src: "/images/gallery/img_6769.jpg", alt: "Volunteers with flowers at a Community Connect gathering", width: 1200, height: 800 },
+  { src: "/images/gallery/primary-school-delivery.jpeg", alt: "Delivering essentials to a primary school", width: 900, height: 1200 },
+  { src: "/images/gallery/img_7828.jpg", alt: "A group of women together outdoors", width: 1461, height: 913 },
+  { src: "/images/gallery/img_1898.jpg", alt: "A community member holding a Kind Sisters tote bag", width: 374, height: 640 },
+  { src: "/images/gallery/1661576444530263.jpg", alt: "Kind Sisters members at a community gathering", width: 1600, height: 1200 },
+  { src: "/images/gallery/march-2025.jpg", alt: "March 2025 community gathering", width: 480, height: 640 },
+  { src: "/images/gallery/40-families-first-ever.jpg", alt: "Relief bags packed for 40 families", width: 1200, height: 900 },
+  { src: "/images/gallery/kellie.jpeg", alt: "A volunteer with a car full of relief bags", width: 552, height: 640 },
+  { src: "/images/gallery/img_6702.jpg", alt: "Women at a Kind Sisters community event", width: 1200, height: 800 },
+  { src: "/images/gallery/img_7841.jpg", alt: "A Community Connect gathering with the Perth skyline", width: 1600, height: 1000 },
+  { src: "/images/gallery/bags-ready-for-delivery.jpeg", alt: "Bags packed and ready for delivery", width: 640, height: 480 },
+  { src: "/images/gallery/11.2.23.jpg", alt: "Women gathered for a Kind Sisters community morning tea", width: 1024, height: 768 },
+  { src: "/images/gallery/img_7942.jpg", alt: "A large community gathering under a tree", width: 1200, height: 800 },
+  { src: "/images/gallery/img_4533.jpg", alt: "Women taking part in a community workshop", width: 640, height: 316 },
+  { src: "/images/gallery/picture1.jpg", alt: "A community event bringing women together", width: 410, height: 307 },
+  { src: "/images/gallery/hamper.jpg", alt: "Hygiene essentials packed into a relief bag", width: 320, height: 250 },
 ];
+
+type GalleryImage = (typeof galleryImages)[number];
 
 const supportNetwork = [
   { name: "WA Connect", phone: null, website: "https://waconnect.org.au/" },
@@ -54,20 +62,20 @@ const supportNetwork = [
 ];
 
 export default function ProjectsPage() {
-  const [lightboxImage, setLightboxImage] = useState<{
-    src: string;
-    alt: string;
-  } | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null);
 
-  const scrollCarousel = (direction: 'left' | 'right') => {
-    if (!carouselRef.current) return;
-    const scrollAmount = 320;
-    carouselRef.current.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    });
-  };
+  useEffect(() => {
+    if (!lightboxImage) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxImage(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxImage]);
 
   return (
     <div className="bg-earth">
@@ -132,53 +140,39 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Photo Gallery Carousel */}
+      {/* Photo Gallery */}
       <section className="py-16 md:py-24 bg-canvas">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="flex items-center justify-between mb-8">
+          <div className="mb-10">
             <h2 className="font-serif text-3xl md:text-4xl text-trust">
               Gallery
             </h2>
-            <div className="flex gap-2">
-              <button
-                onClick={() => scrollCarousel('left')}
-                className="w-10 h-10 rounded-full bg-[var(--earth)] flex items-center justify-center text-[var(--trust)] hover:bg-[var(--kindness-whisper)] transition-colors"
-                aria-label="Scroll gallery left"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scrollCarousel('right')}
-                className="w-10 h-10 rounded-full bg-[var(--earth)] flex items-center justify-center text-[var(--trust)] hover:bg-[var(--kindness-whisper)] transition-colors"
-                aria-label="Scroll gallery right"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+            <p className="mt-3 max-w-2xl text-trust-soft">
+              Moments from our relief-bag deliveries and Women&apos;s Community
+              Connect events. Tap any photo to view it larger.
+            </p>
           </div>
-          <div
-            ref={carouselRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+          <div className="columns-1 gap-4 [column-fill:_balance] sm:columns-2 lg:columns-3 xl:columns-4">
             {galleryImages.map((img) => (
               <button
                 key={img.src}
                 onClick={() => setLightboxImage(img)}
-                className="relative flex-shrink-0 w-72 h-72 snap-start rounded-[var(--radius-lg)] overflow-hidden group cursor-pointer"
+                className="group relative mb-4 block w-full cursor-zoom-in break-inside-avoid overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-sm)] transition-shadow duration-300 hover:shadow-[var(--shadow-md)] focus:outline-none focus-visible:ring-2 focus-visible:ring-kindness focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="288px"
+                  width={img.width}
+                  height={img.height}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-[var(--trust)]/0 group-hover:bg-[var(--trust)]/20 transition-colors" />
+                <span className="pointer-events-none absolute inset-0 bg-trust/0 transition-colors duration-300 group-hover:bg-trust/15" />
+                <span className="pointer-events-none absolute bottom-3 right-3 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-canvas/95 text-trust opacity-0 shadow-[var(--shadow-sm)] transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-5.2-5.2m0 0A7.5 7.5 0 105.2 5.2a7.5 7.5 0 0010.6 10.6zM10.5 7.5v6m3-3h-6" />
+                  </svg>
+                </span>
               </button>
             ))}
           </div>
@@ -188,27 +182,29 @@ export default function ProjectsPage() {
       {/* Lightbox Modal */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-trust/80 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-trust/85 p-4 sm:p-8"
           onClick={() => setLightboxImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightboxImage.alt}
         >
-          <div
-            className="relative max-w-4xl w-full aspect-[4/3] rounded-[var(--radius-lg)] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
             <Image
               src={lightboxImage.src}
               alt={lightboxImage.alt}
-              fill
-              className="object-contain"
+              width={lightboxImage.width}
+              height={lightboxImage.height}
               sizes="90vw"
+              className="h-auto max-h-[85vh] w-auto max-w-[90vw] rounded-[var(--radius-lg)] object-contain shadow-[var(--shadow-lg)]"
             />
             <button
               onClick={() => setLightboxImage(null)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-canvas/90 flex items-center justify-center text-trust hover:bg-canvas transition-colors"
+              className="absolute -right-3 -top-3 flex h-11 w-11 items-center justify-center rounded-full bg-canvas text-trust shadow-[var(--shadow-md)] transition-colors hover:bg-kindness-whisper focus:outline-none focus-visible:ring-2 focus-visible:ring-kindness"
               aria-label="Close lightbox"
+              autoFocus
             >
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
