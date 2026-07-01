@@ -3,7 +3,7 @@ import SectionReveal from '@/components/SectionReveal';
 import DonateButton from '@/components/DonateButton';
 import ImpactCounter from '@/components/ImpactCounter';
 import RotatingImpact from '@/components/RotatingImpact';
-import NewsletterForm from '@/components/NewsletterForm';
+import ZeffyNewsletter from '@/components/ZeffyNewsletter';
 
 export default function Home() {
   return (
@@ -262,7 +262,7 @@ export default function Home() {
           <SectionReveal>
             <h2 className="font-[var(--font-dm-serif)] text-3xl text-[var(--trust)] mb-3">Stay Connected</h2>
             <p className="text-[var(--trust-soft)] mb-8">Join our newsletter to hear about our impact and how you can help.</p>
-            <NewsletterForm />
+            <ZeffyNewsletter />
           </SectionReveal>
         </div>
       </section>

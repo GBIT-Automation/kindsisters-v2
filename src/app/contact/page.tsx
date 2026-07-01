@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
+import ZeffyNewsletter from "@/components/ZeffyNewsletter";
 
 interface FormData {
   name: string;
@@ -26,8 +27,6 @@ export default function ContactPage() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -59,22 +58,6 @@ export default function ContactPage() {
         // Silently fail — form still shows success for UX
         setSubmitted(true);
       }
-    }
-  };
-
-  const handleNewsletterSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (newsletterEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) {
-      try {
-        await fetch('/api/newsletter', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: newsletterEmail }),
-        });
-      } catch {
-        // Silently fail
-      }
-      setNewsletterSubmitted(true);
     }
   };
 
@@ -317,31 +300,7 @@ export default function ContactPage() {
             Sign up for our newsletter to hear about upcoming events,
             volunteer opportunities, and stories from our community.
           </p>
-          {newsletterSubmitted ? (
-            <p className="text-relief font-medium text-lg">
-              Thank you for subscribing! We&apos;ll be in touch soon.
-            </p>
-          ) : (
-            <form
-              onSubmit={handleNewsletterSubmit}
-              className="flex gap-3 max-w-md mx-auto"
-            >
-              <input
-                type="email"
-                required
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                className="flex-1 rounded-[var(--radius-full)] border-2 border-[var(--border-default)] bg-canvas px-5 py-3 text-trust placeholder:text-trust-muted focus:border-kindness focus:outline-none"
-                placeholder="Your email address"
-              />
-              <button
-                type="submit"
-                className="rounded-[var(--radius-full)] bg-kindness px-6 py-3 font-semibold text-white hover:bg-kindness-deep transition-colors shrink-0"
-              >
-                Subscribe
-              </button>
-            </form>
-          )}
+          <ZeffyNewsletter />
         </div>
       </section>
 
