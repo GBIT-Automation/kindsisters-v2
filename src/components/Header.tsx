@@ -68,7 +68,7 @@ export default function Header() {
           {/* Compact state: Logo left, nav + donate right */}
           <div
             className="flex items-center justify-between transition-all duration-500"
-            style={{ height: scrolled ? '5rem' : '0px', opacity: scrolled ? 1 : 0, overflow: 'hidden' }}
+            style={{ height: scrolled ? '5rem' : '0px', opacity: scrolled ? 1 : 0, overflow: scrolled ? 'visible' : 'hidden' }}
           >
             {/* Compact Logo */}
             <Link href="/" className="flex-shrink-0">
