@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import PullQuote from '@/components/PullQuote';
 
 export const metadata: Metadata = {
   title: 'Get Involved',
@@ -132,6 +133,12 @@ export default function GetInvolvedPage() {
               </Link>
             </div>
           </div>
+
+          <PullQuote
+            quote="Our families are so grateful for the support in the cost-of-living crisis."
+            attribution="School Support Worker"
+            className="mt-16"
+          />
         </div>
       </section>
 

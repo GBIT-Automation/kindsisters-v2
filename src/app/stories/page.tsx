@@ -9,28 +9,22 @@ export const metadata: Metadata = {
 
 const testimonials = [
   {
-    name: "Sarah M.",
-    context: "Refugee family receiving bags",
+    name: "Primary School Support Worker",
+    context: "June 2026",
     quote:
-      "When we first arrived in Perth, we had nothing. No furniture, no food in the cupboards, and three children to look after. The school told us about Kind Sisters, and within days a bag arrived with everything we needed. It wasn't just the food and toiletries — it was knowing that someone in this new country cared about us. My children went to school the next day with full stomachs and clean clothes. That small bag gave us hope that we could build a life here.",
+      "The response from families has been overwhelmingly positive, and everyone was incredibly grateful for the support. Many shared that the bags arrived at exactly the right time and made a real difference. One mum, in particular, said how thankful she was for the laundry detergent. Her special needs son needs his bedding washed almost every day, so it is an item she uses all the time. She said receiving it was a huge help. Thanks so much for your effort and for making such a meaningful difference to the families in our school community.",
   },
   {
-    name: "Lisa T.",
-    context: "Volunteer who found purpose",
+    name: "Senior Multicultural Support Worker",
+    context: "October 2025",
     quote:
-      "After my youngest started school, I felt lost. I'd spent years as a full-time mum and didn't know what to do with myself. A friend invited me to help pack bags at Kind Sisters, and I haven't looked back. The other volunteers became my closest friends. Seeing the difference we make — the relief on a parent's face when they receive a bag — it gives me a sense of purpose I didn't know I was missing. Volunteering here changed my life as much as it changed anyone else's.",
+      "At our school we have a high number of students who come from a refugee background who experience adversity and are very vulnerable. The essentials bags provided are crucial in minimising the cost of groceries for our families. The items provided in these bags are not available from any other support service and our families struggle to afford these basic necessities. Our school community receives these items on a regular basis and we distribute to those in need, particularly single parent households and families who have escaped family and domestic violence. We are so grateful that you provide for the practical needs of our children and families.",
   },
   {
-    name: "Rachel K.",
-    context: "School support worker",
+    name: "School Support Worker",
+    context: "March 2026",
     quote:
-      "As a school support worker, I see families in crisis every week. Parents come to me in tears because they can't afford lunch for their kids. Before Kind Sisters, I had very little I could offer them. Now I can say, 'Let me get you some support,' and within days a bag of essentials is there. It takes the pressure off families at their most vulnerable moments. The bags are always packed with care — you can tell they're put together by people who genuinely understand what families need.",
-  },
-  {
-    name: "Maria D.",
-    context: "Monthly donor who visited a delivery",
-    quote:
-      "I'd been donating monthly for about a year when Jody invited me to come and see a bag delivery at one of the schools. Watching the support worker hand a bag to a mum who was visibly struggling — and seeing her shoulders drop with relief — I understood exactly where my money was going. It's not a faceless charity. It's real people helping real families, one bag at a time. I doubled my donation that afternoon and I haven't regretted it for a second.",
+      "I dropped off the bags to some of our most vulnerable families. They commented that the items in the essentials bags were so useful and they were so pleased for the support as these are items they just can't afford in the cost-of-living crisis.",
   },
 ];
 

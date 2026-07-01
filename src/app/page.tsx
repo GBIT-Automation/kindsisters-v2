@@ -68,9 +68,9 @@ export default function Home() {
                 </p>
                 <div className="bg-[var(--kindness-whisper)] rounded-xl p-6 border-l-4 border-[var(--kindness)]">
                   <p className="text-[var(--trust)] font-medium italic text-lg">
-                    &ldquo;It was the first time in months I felt like someone truly cared.&rdquo;
+                    &ldquo;The bags arrived at just the right time to help a parent struggling with her special-needs child.&rdquo;
                   </p>
-                  <p className="text-[var(--kindness)] text-sm mt-2 font-semibold">— Sarah, mother of three</p>
+                  <p className="text-[var(--kindness)] text-sm mt-2 font-semibold">— School Support Worker</p>
                 </div>
               </div>
               <div className="relative">
@@ -157,11 +157,11 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { quote: "When my family first arrived in Perth, we had nothing. Kind Sisters provided us with essentials relief bags filled with food and hygiene products. It was the first time in months I felt like someone truly cared.", name: "Sarah M." },
-              { quote: "I started volunteering after attending a Community Connect event. The warmth I experienced was unlike anything. Now I help pack relief bags every month and it has given me real purpose.", name: "Lisa T." },
-              { quote: "As a school support worker, I see the impact every week. Families who were struggling now receive bags delivered with dignity. The children come to school ready to learn.", name: "Rachel K." },
+              { quote: "The items provided in these bags are not available from any other support service and our families struggle to afford these basic necessities. Thank you for making a difference.", name: "Senior Multicultural Support Worker" },
+              { quote: "Our families are so grateful for the support in the cost-of-living crisis.", name: "School Support Worker" },
+              { quote: "The bags arrived at just the right time to help one of our parents who struggles with her special-needs child and is finding life really tough right now.", name: "School Support Worker" },
             ].map((testimonial, i) => (
-              <SectionReveal key={testimonial.name} delay={i * 0.1}>
+              <SectionReveal key={i} delay={i * 0.1}>
                 <div className="bg-white rounded-2xl p-8 shadow-[var(--shadow-sm)] border-l-4 border-[var(--kindness)] h-full flex flex-col">
                   <p className="text-[var(--trust-soft)] leading-relaxed flex-1 italic">&ldquo;{testimonial.quote}&rdquo;</p>
                   <p className="mt-4 font-semibold text-[var(--kindness)]">{testimonial.name}</p>
