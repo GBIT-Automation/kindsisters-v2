@@ -85,8 +85,10 @@ export default function PrivacyPage() {
               <p>
                 We take reasonable steps to protect your personal information
                 from misuse, interference, loss, and unauthorised access or
-                disclosure. Payment information is processed securely through
-                our payment provider (Stripe) and is not stored on our servers.
+                disclosure. Donations are processed securely through our
+                donation platform, Zeffy, and its payment processor, Stripe.
+                Payment card information is entered directly with these providers
+                and is not stored on our servers.
               </p>
             </div>
 

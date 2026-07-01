@@ -1,8 +1,6 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import EmbeddedCheckoutForm from "@/components/EmbeddedCheckout";
+import ZeffyDonate from "@/components/ZeffyDonate";
+import SchemeIdImage from "@/components/SchemeIdImage";
 
 const impactItems = [
   { amount: 10, label: "School supplies for one child" },
@@ -10,58 +8,9 @@ const impactItems = [
   { amount: 50, label: "A complete family essentials bag" },
 ];
 
-const presetAmounts = [10, 25, 50];
-
 export default function DonatePage() {
-  const [frequency, setFrequency] = useState<"once" | "monthly">("once");
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
-  const [customAmount, setCustomAmount] = useState("");
-  const [status, setStatus] = useState<string | null>(null);
-  const [showCheckout, setShowCheckout] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlStatus = params.get("status");
-    if (urlStatus) {
-      setStatus(urlStatus);
-    }
-  }, []);
-
-  const activeAmount = selectedAmount ?? (customAmount ? Number(customAmount) : 0);
-
-  const handleDonate = () => {
-    if (activeAmount > 0) {
-      setShowCheckout(true);
-    }
-  };
-
   return (
     <div className="bg-earth">
-      {/* Embedded Stripe Checkout */}
-      {showCheckout && activeAmount > 0 && (
-        <EmbeddedCheckoutForm
-          amount={activeAmount}
-          frequency={frequency}
-          onClose={() => setShowCheckout(false)}
-        />
-      )}
-
-      {/* Post-donation status */}
-      {status === "success" && (
-        <div className="bg-relief-soft border-b border-relief/20 py-6 text-center">
-          <div className="mx-auto max-w-2xl px-6">
-            <p className="text-4xl mb-3">💛</p>
-            <p className="text-relief font-medium text-xl mb-2">
-              Thank you for your generous donation!
-            </p>
-            <p className="text-trust-soft">
-              Your kindness makes a real difference to families in our community.
-              You&apos;ll receive a tax-deductible receipt by email.
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* Hero */}
       <section className="py-16 md:py-24 bg-warmth-glow">
         <div className="mx-auto max-w-4xl px-6 text-center">
@@ -102,90 +51,21 @@ export default function DonatePage() {
       {/* Donation Widget */}
       <section className="py-16 md:py-20 bg-canvas">
         <div className="mx-auto max-w-lg px-6">
-          <h2 className="font-serif text-3xl text-trust text-center mb-8">
+          <h2 className="font-serif text-3xl text-trust text-center mb-4">
             Make a Donation
           </h2>
+          <p className="text-center text-trust-soft mb-8">
+            100% of your donation reaches Kind Sisters. Choose your amount and
+            whether to give once or monthly below.
+          </p>
 
-          {/* Frequency toggle */}
-          <div className="flex rounded-[var(--radius-full)] bg-earth p-1 mb-8">
-            <button
-              onClick={() => setFrequency("once")}
-              className={`flex-1 rounded-[var(--radius-full)] py-3 text-sm font-medium transition-colors ${
-                frequency === "once"
-                  ? "bg-canvas text-trust shadow-[var(--shadow-sm)]"
-                  : "text-trust-muted hover:text-trust-soft"
-              }`}
-            >
-              One-time
-            </button>
-            <button
-              onClick={() => setFrequency("monthly")}
-              className={`flex-1 rounded-[var(--radius-full)] py-3 text-sm font-medium transition-colors ${
-                frequency === "monthly"
-                  ? "bg-canvas text-trust shadow-[var(--shadow-sm)]"
-                  : "text-trust-muted hover:text-trust-soft"
-              }`}
-            >
-              Monthly
-            </button>
-          </div>
-
-          {/* Amount buttons */}
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            {presetAmounts.map((amount) => (
-              <button
-                key={amount}
-                onClick={() => {
-                  setSelectedAmount(amount);
-                  setCustomAmount("");
-                }}
-                className={`rounded-[var(--radius-md)] py-4 text-lg font-medium transition-colors border-2 ${
-                  selectedAmount === amount
-                    ? "border-kindness bg-kindness-whisper text-kindness-deep"
-                    : "border-[var(--border-default)] bg-canvas text-trust hover:border-kindness-soft"
-                }`}
-              >
-                ${amount}
-              </button>
-            ))}
-          </div>
-
-          {/* Custom amount */}
-          <div className="mb-8">
-            <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-trust-muted text-lg">
-                $
-              </span>
-              <input
-                type="number"
-                min="1"
-                max="50000"
-                placeholder="Other amount"
-                value={customAmount}
-                onChange={(e) => {
-                  setCustomAmount(e.target.value);
-                  setSelectedAmount(null);
-                }}
-                className="w-full rounded-[var(--radius-md)] border-2 border-[var(--border-default)] bg-canvas py-4 pl-9 pr-4 text-lg text-trust placeholder:text-trust-muted focus:border-kindness focus:outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Donate button */}
-          <button
-            onClick={handleDonate}
-            disabled={activeAmount <= 0}
-            className="w-full rounded-[var(--radius-full)] bg-kindness py-4 text-lg font-semibold text-white transition-colors hover:bg-kindness-deep disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Donate{activeAmount > 0 ? ` $${activeAmount}` : ""}{" "}
-            {frequency === "monthly" ? "Monthly" : ""}
-          </button>
+          <ZeffyDonate />
 
           <div className="mt-4 flex items-center justify-center gap-2 text-sm text-trust-muted">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <span>Secure payment via Stripe. All donations over $2 are tax deductible.</span>
+            <span>Secure payment via Zeffy. All donations over $2 are tax deductible.</span>
           </div>
         </div>
       </section>
@@ -224,22 +104,7 @@ export default function DonatePage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="animate-float relative">
-                <img
-                  src="/images/icons/containers-for-change-social.jpeg"
-                  alt="Donate your 10c containers to Kind Sisters — Containers for Change ID C11083530"
-                  className="rounded-[var(--radius-lg)] shadow-[var(--shadow-lg)] max-w-xs w-full hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  onClick={(e) => {
-                    navigator.clipboard?.writeText('C11083530');
-                    const el = e.currentTarget.parentElement?.querySelector('.copy-feedback');
-                    if (el) {
-                      el.textContent = 'Copied!';
-                      setTimeout(() => { el.textContent = 'Tap to copy Scheme ID'; }, 2000);
-                    }
-                  }}
-                />
-                <p className="copy-feedback text-center text-trust-muted text-xs mt-3">Tap to copy Scheme ID</p>
-              </div>
+              <SchemeIdImage />
             </div>
           </div>
         </div>
