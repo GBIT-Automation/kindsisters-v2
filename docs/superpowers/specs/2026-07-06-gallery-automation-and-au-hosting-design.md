@@ -1,5 +1,10 @@
 # Kind Sisters — Gallery Automation + Australian Hosting
 
+> **SUPERSEDED (2026-07-07)** by `2026-07-07-self-editable-cms-payload-au-hosting-design.md`.
+> This SharePoint photo-sync automation solved only the gallery, via a back door, and did not
+> meet the agreed requirement that Kind Sisters staff self-edit Blogs, Gallery, and Events
+> without relying on GBIT. Replaced by a self-hosted Payload CMS. Kept for history.
+
 Design doc. Author: GBIT Automation. Date: 2026-07-06.
 
 ## 1. Problem & goals
