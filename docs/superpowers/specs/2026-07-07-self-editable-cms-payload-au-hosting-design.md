@@ -18,11 +18,14 @@ This design adds a self-editable CMS to the existing Next.js site and self-hosts
 Australia, satisfying both requirements at once.
 
 **Goals**
-1. Jody (and other named staff) create, edit, and publish **Blog posts, Events, and Gallery
-   photos** themselves through a simple admin screen, no code, from any browser.
+1. Jody (and other named staff) have **full control** of **Blog posts, Events, and Gallery
+   photos** — **create, edit existing, and delete** — themselves through a simple admin screen,
+   no code, from any browser.
 2. Photos are optimised for web automatically on upload.
 3. All content and its database live on **Australian** infrastructure.
 4. Kind Sisters is **not reliant on GBIT** for day-to-day content.
+5. Edits and deletions are **safe and recoverable** — version history and a trash bin, so a
+   mistake can be undone.
 
 **Non-goals**
 - Making every marketing page (Home, About, Programs, Contact) editable in v1. Those stay
@@ -54,11 +57,19 @@ Jody goes to **`kindsisters.org.au/admin`** and logs in. She sees a simple sideb
   gallery on its own. No SharePoint, no waiting on GBIT.
 - **To add an event:** click *Events → Create New* → title, date, location, description,
   image, **Publish**. It shows on the Events page.
+- **Change anything already on the site:** open any existing post, event, photo, or
+  testimonial from its list, edit it (swap the image, fix the text, change the caption or date),
+  and save — the live site updates.
+- **Delete:** remove an item from its list. Deleted items go to a **trash bin** (not gone for
+  good) and can be restored; emptying trash removes them permanently. A confirmation step
+  guards against accidental deletes.
+- **Undo a bad edit:** every item keeps a **version history**, so a previous version can be
+  restored if a change was wrong.
 - **Drafts:** she can save without publishing and come back later.
 - **Other staff:** each gets their own login; GBIT can add or remove editors.
 
-No code, no developer, works from any browser or phone. That is the "non-reliant on a third
-party" outcome the agreement called for.
+No code, no developer, works from any browser or phone. Full create / edit / delete control.
+That is the "non-reliant on a third party" outcome the agreement called for.
 
 ## 4. Architecture
 
@@ -135,7 +146,9 @@ A CMS has a login and a database, so it needs care a static site did not:
 
 ## 11. Testing / verification
 
-- Content-type CRUD as an editor (create/edit/publish/unpublish each of Blog/Event/Gallery).
+- Full CRUD as an editor on each of Blog/Event/Gallery/Testimonial: create, edit an existing
+  item, unpublish, **delete → item lands in trash → restore it**, and **restore a previous
+  version** from history. Confirm the live site reflects each change.
 - Image upload produces optimised web sizes; alt text saved; renders correctly + no layout shift.
 - Draft vs published visibility on the public site.
 - Role check: an `editor` cannot manage users; an `admin` can.
