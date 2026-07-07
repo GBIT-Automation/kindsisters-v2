@@ -163,8 +163,10 @@ A CMS has a login and a database, so it needs care a static site did not:
 2. **Phase 2:** provision BinaryLane Perth; deploy app + DB + media + backups; verify on a
    temporary hostname.
 3. **Phase 3:** DNS cutover to BinaryLane **preserving the Microsoft 365 email records**;
-   verify email + site; then **cancel VentraIP hosting within the 45-day refund window** and
-   claim the refund (keep the domain registered).
+   verify email + site. **Do NOT cancel VentraIP until Jody gives explicit written go-ahead.**
+   Once she approves, cancel VentraIP hosting **within the 45-day refund window** and claim the
+   refund (keep the domain registered). If her decision lands past the window, we forgo the
+   refund rather than cancel without her sign-off.
 
 Each phase is revertible (DNS rollback to Vercel; disable the box).
 
