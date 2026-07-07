@@ -150,8 +150,9 @@ export default function EssentialsReliefBagsPage() {
             Help us pack more bags
           </h2>
           <p className="text-trust-soft text-lg mb-8">
-            A $50 donation covers a complete family essentials bag. Your
-            generosity means a family won&apos;t go without.
+            Partner with us by making a tax-deductible donation today. Or
+            consider making monthly contributions to leave a legacy that will
+            impact the generations to come.
           </p>
           <Link
             href="/donate"

@@ -24,7 +24,7 @@ export default function Home() {
               Creating space<br />for community.
             </h1>
             <p className="text-white/80 text-lg md:text-xl max-w-lg mb-8">
-              A grass-roots nonprofit supporting vulnerable women and children in Perth through essential relief and genuine connection.
+              A grassroots nonprofit organisation dedicated to strengthening women as the gateway to stronger families and communities.
             </p>
             <div className="flex flex-wrap gap-4">
               <DonateButton size="lg" variant="primary" />
@@ -47,6 +47,18 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== MISSION ===== */}
+      <section className="py-16 md:py-20 bg-[var(--kindness-whisper)]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <SectionReveal>
+            <p className="text-[var(--kindness)] font-semibold text-sm tracking-wider uppercase mb-4">Our Mission</p>
+            <p className="font-[var(--font-dm-serif)] text-2xl md:text-3xl text-[var(--trust)] leading-snug">
+              To improve the quality of life of women, children and families by supporting essential needs, creating a sense of belonging in community and building personal capacity.
+            </p>
+          </SectionReveal>
         </div>
       </section>
 
@@ -82,7 +94,7 @@ export default function Home() {
                   className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
                 />
                 <div className="absolute -bottom-4 -left-4 bg-[var(--warmth)] text-white rounded-xl px-5 py-3 shadow-[var(--shadow-md)]">
-                  <p className="text-2xl font-bold">Since 2015</p>
+                  <p className="text-2xl font-bold">Since 2022</p>
                   <p className="text-xs opacity-80">Serving our community</p>
                 </div>
               </div>
@@ -261,7 +273,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionReveal>
             <h2 className="font-[var(--font-dm-serif)] text-3xl text-[var(--trust)] mb-3">Stay Connected</h2>
-            <p className="text-[var(--trust-soft)] mb-8">Join our newsletter to hear about our impact and how you can help.</p>
+            <p className="text-[var(--trust-soft)] mb-8">Keep up to date with the positive impact Kind Sisters is making in the lives of vulnerable women and children, with the latest news, stories and events sent directly to your inbox.</p>
             <ZeffyNewsletter />
           </SectionReveal>
         </div>
