@@ -37,7 +37,7 @@ Australia, satisfying both requirements at once.
 | Decision | Choice | Rationale |
 |---|---|---|
 | CMS | **Payload CMS 3** | Runs *inside* the existing Next.js app (App Router). TypeScript. Open-source, self-hostable. Ships a friendly admin UI, user accounts + roles, and built-in image optimisation. No SaaS lock-in, no per-seat fees. |
-| Editable content types (v1) | **Blog Posts, Events, Gallery** (+ Testimonials, optional) | Exactly what was agreed. Marketing pages stay coded in v1. |
+| Editable content types (v1) | **Blog Posts, Events, Gallery, Testimonials** | Confirmed scope. Marketing pages (Home/About/Programs/Contact) stay developer-maintained in v1. |
 | Database | **SQLite** (start), upgrade path to **Postgres** | SQLite keeps the box light and cheap and is fine for a low-traffic charity. Postgres if volume/roles grow. |
 | Hosting | **BinaryLane Perth** VPS. Start **2 GB** (~$10.78/mo inc-GST); bump to **4 GB** (~$21.56) if tight | Australian data residency (Perth = low latency). 2 GB + SQLite runs Next.js + Payload for this scale; 4 GB is the comfort tier. |
 | Media storage | VPS local disk, served via nginx/Next; **auto-resized on upload** (Payload + sharp) | Keeps images in Australia; no external CDN needed at this scale. |
@@ -97,7 +97,7 @@ the Blog/Events/Gallery data comes from Payload instead of hardcoded files.
   `author`, `publishedDate`, `status` (draft/published), SEO fields.
 - **Events** — `title`, `date`, `location`, `description` (rich text), `image`, `status`.
 - **Gallery** — `image` (upload, auto-resized), `alt/caption`, optional `tags`, `status`.
-- **Testimonials** (optional, since these are already on the site) — `quote`, `role`, `date`.
+- **Testimonials** — `quote`, `role`, `date` (already real content on the site; migrated in).
 - **Media** — Payload's upload collection; generates web-optimised sizes on upload (replaces the
   manual ImageMagick pipeline).
 - **Users** — staff logins with `role` (admin/editor).
