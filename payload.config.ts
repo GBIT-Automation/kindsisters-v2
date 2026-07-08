@@ -10,13 +10,14 @@ import { Media } from './src/collections/Media'
 import { Gallery } from './src/collections/Gallery'
 import { Blog } from './src/collections/Blog'
 import { Events } from './src/collections/Events'
+import { Testimonials } from './src/collections/Testimonials'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default buildConfig({
   admin: { user: Users.slug },
   editor: lexicalEditor(),
-  collections: [Users, Media, Gallery, Blog, Events], // Testimonials added in Task 7
+  collections: [Users, Media, Gallery, Blog, Events, Testimonials],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'src/payload-types.ts'),
