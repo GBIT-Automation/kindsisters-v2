@@ -1,8 +1,7 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Gallery, { type GalleryImage } from "@/components/Gallery";
+import { getPayloadClient } from "@/lib/payload";
 
 const featuredPrograms = [
   {
@@ -21,29 +20,6 @@ const featuredPrograms = [
   },
 ];
 
-const galleryImages = [
-  { src: "/images/gallery/img_8046.jpg", alt: "Women's Community Connect group with the Perth skyline behind them", width: 1600, height: 1067 },
-  { src: "/images/gallery/img_7887.jpg", alt: "Families receiving support at a community event", width: 800, height: 1200 },
-  { src: "/images/gallery/img_6769.jpg", alt: "Volunteers with flowers at a Community Connect gathering", width: 1200, height: 800 },
-  { src: "/images/gallery/primary-school-delivery.jpeg", alt: "Delivering essentials to a primary school", width: 900, height: 1200 },
-  { src: "/images/gallery/img_7828.jpg", alt: "A group of women together outdoors", width: 1461, height: 913 },
-  { src: "/images/gallery/img_1898.jpg", alt: "A community member holding a Kind Sisters tote bag", width: 374, height: 640 },
-  { src: "/images/gallery/1661576444530263.jpg", alt: "Kind Sisters members at a community gathering", width: 1600, height: 1200 },
-  { src: "/images/gallery/march-2025.jpg", alt: "March 2025 community gathering", width: 480, height: 640 },
-  { src: "/images/gallery/40-families-first-ever.jpg", alt: "Relief bags packed for 40 families", width: 1200, height: 900 },
-  { src: "/images/gallery/kellie.jpeg", alt: "A volunteer with a car full of relief bags", width: 552, height: 640 },
-  { src: "/images/gallery/img_6702.jpg", alt: "Women at a Kind Sisters community event", width: 1200, height: 800 },
-  { src: "/images/gallery/img_7841.jpg", alt: "A Community Connect gathering with the Perth skyline", width: 1600, height: 1000 },
-  { src: "/images/gallery/bags-ready-for-delivery.jpeg", alt: "Bags packed and ready for delivery", width: 640, height: 480 },
-  { src: "/images/gallery/11.2.23.jpg", alt: "Women gathered for a Kind Sisters community morning tea", width: 1024, height: 768 },
-  { src: "/images/gallery/img_7942.jpg", alt: "A large community gathering under a tree", width: 1200, height: 800 },
-  { src: "/images/gallery/img_4533.jpg", alt: "Women taking part in a community workshop", width: 640, height: 316 },
-  { src: "/images/gallery/picture1.jpg", alt: "A community event bringing women together", width: 410, height: 307 },
-  { src: "/images/gallery/hamper.jpg", alt: "Hygiene essentials packed into a relief bag", width: 320, height: 250 },
-];
-
-type GalleryImage = (typeof galleryImages)[number];
-
 const supportNetwork = [
   { name: "WA Connect", phone: null, website: "https://waconnect.org.au/" },
   { name: "Crisis Care", phone: "1800 199 008", website: null },
@@ -61,21 +37,28 @@ const supportNetwork = [
   { name: "Family Line", phone: "1800 050 321", website: null },
 ];
 
-export default function ProjectsPage() {
-  const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null);
+// Revalidate so photos Jody publishes in the CMS appear on the site within
+// the window without a rebuild.
+export const revalidate = 30;
 
-  useEffect(() => {
-    if (!lightboxImage) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightboxImage(null);
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [lightboxImage]);
+export default async function ProjectsPage() {
+  const payload = await getPayloadClient();
+  const { docs } = await payload.find({
+    collection: "gallery",
+    where: { _status: { equals: "published" } },
+    limit: 100,
+    sort: "-createdAt",
+    depth: 0,
+  });
+
+  const images: GalleryImage[] = docs
+    .filter((d) => d.url && d.width && d.height)
+    .map((d) => ({
+      src: d.url as string,
+      alt: d.alt,
+      width: d.width as number,
+      height: d.height as number,
+    }));
 
   return (
     <div className="bg-earth">
@@ -152,74 +135,9 @@ export default function ProjectsPage() {
               Connect events. Tap any photo to view it larger.
             </p>
           </div>
-          <div className="columns-1 gap-4 [column-fill:_balance] sm:columns-2 lg:columns-3 xl:columns-4">
-            {galleryImages.map((img) => (
-              <button
-                key={img.src}
-                onClick={() => setLightboxImage(img)}
-                className="group relative mb-4 block w-full cursor-zoom-in break-inside-avoid overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-sm)] transition-shadow duration-300 hover:shadow-[var(--shadow-md)] focus:outline-none focus-visible:ring-2 focus-visible:ring-kindness focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-                <span className="pointer-events-none absolute inset-0 bg-trust/0 transition-colors duration-300 group-hover:bg-trust/15" />
-                <span className="pointer-events-none absolute bottom-3 right-3 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-canvas/95 text-trust opacity-0 shadow-[var(--shadow-sm)] transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-5.2-5.2m0 0A7.5 7.5 0 105.2 5.2a7.5 7.5 0 0010.6 10.6zM10.5 7.5v6m3-3h-6" />
-                  </svg>
-                </span>
-              </button>
-            ))}
-          </div>
+          <Gallery images={images} />
         </div>
       </section>
-
-      {/* Lightbox Modal */}
-      {lightboxImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-trust/85 p-4 sm:p-8"
-          onClick={() => setLightboxImage(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={lightboxImage.alt}
-        >
-          <div className="relative" onClick={(e) => e.stopPropagation()}>
-            <Image
-              src={lightboxImage.src}
-              alt={lightboxImage.alt}
-              width={lightboxImage.width}
-              height={lightboxImage.height}
-              sizes="90vw"
-              className="h-auto max-h-[85vh] w-auto max-w-[90vw] rounded-[var(--radius-lg)] object-contain shadow-[var(--shadow-lg)]"
-            />
-            <button
-              onClick={() => setLightboxImage(null)}
-              className="absolute -right-3 -top-3 flex h-11 w-11 items-center justify-center rounded-full bg-canvas text-trust shadow-[var(--shadow-md)] transition-colors hover:bg-kindness-whisper focus:outline-none focus-visible:ring-2 focus-visible:ring-kindness"
-              aria-label="Close lightbox"
-              autoFocus
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Local Support Network */}
       <section className="py-16 md:py-24">
