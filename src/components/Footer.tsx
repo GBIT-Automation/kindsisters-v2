@@ -55,6 +55,7 @@ export default function Footer() {
                 { href: '/events', label: 'Events' },
                 { href: '/get-involved', label: 'Get Involved' },
                 { href: '/stories', label: 'Stories' },
+                { href: '/blog', label: 'Blog' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/donate', label: 'Donate' },
                 { href: '/privacy', label: 'Privacy Policy' },

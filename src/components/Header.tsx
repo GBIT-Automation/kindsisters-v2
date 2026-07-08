@@ -28,6 +28,7 @@ export default function Header() {
     { href: '/events', label: 'Events' },
     { href: '/get-involved', label: 'Get Involved' },
     { href: '/stories', label: 'Stories' },
+    { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
   ];
 
