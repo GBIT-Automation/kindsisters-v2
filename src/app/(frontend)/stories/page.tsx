@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getPayloadClient } from "@/lib/payload";
 
 export const metadata: Metadata = {
   title: "Stories of Hope",
@@ -7,28 +8,17 @@ export const metadata: Metadata = {
     "Real voices from families, volunteers, and donors whose lives have been touched by Kind Sisters in Perth.",
 };
 
-const testimonials = [
-  {
-    name: "Primary School Support Worker",
-    context: "June 2026",
-    quote:
-      "The response from families has been overwhelmingly positive, and everyone was incredibly grateful for the support. Many shared that the bags arrived at exactly the right time and made a real difference. One mum, in particular, said how thankful she was for the laundry detergent. Her special needs son needs his bedding washed almost every day, so it is an item she uses all the time. She said receiving it was a huge help. Thanks so much for your effort and for making such a meaningful difference to the families in our school community.",
-  },
-  {
-    name: "Senior Multicultural Support Worker",
-    context: "October 2025",
-    quote:
-      "At our school we have a high number of students who come from a refugee background who experience adversity and are very vulnerable. The essentials bags provided are crucial in minimising the cost of groceries for our families. The items provided in these bags are not available from any other support service and our families struggle to afford these basic necessities. Our school community receives these items on a regular basis and we distribute to those in need, particularly single parent households and families who have escaped family and domestic violence. We are so grateful that you provide for the practical needs of our children and families.",
-  },
-  {
-    name: "School Support Worker",
-    context: "March 2026",
-    quote:
-      "I dropped off the bags to some of our most vulnerable families. They commented that the items in the essentials bags were so useful and they were so pleased for the support as these are items they just can't afford in the cost-of-living crisis.",
-  },
-];
+export const revalidate = 30;
 
-export default function TestimonialsPage() {
+export default async function TestimonialsPage() {
+  const payload = await getPayloadClient();
+  const { docs: testimonials } = await payload.find({
+    collection: "testimonials",
+    where: { _status: { equals: "published" } },
+    sort: "-createdAt",
+    limit: 50,
+  });
+
   return (
     <div className="bg-earth">
       {/* Hero */}
@@ -50,7 +40,7 @@ export default function TestimonialsPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {testimonials.map((testimonial) => (
               <div
-                key={testimonial.name}
+                key={testimonial.id}
                 className="rounded-[var(--radius-lg)] bg-canvas p-8 shadow-[var(--shadow-sm)] border-l-4 border-kindness"
               >
                 <svg
@@ -64,12 +54,12 @@ export default function TestimonialsPage() {
                   {testimonial.quote}
                 </blockquote>
                 <div>
-                  <p className="font-medium text-trust">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-sm text-trust-muted">
-                    {testimonial.context}
-                  </p>
+                  <p className="font-medium text-trust">{testimonial.role}</p>
+                  {testimonial.date && (
+                    <p className="text-sm text-trust-muted">
+                      {testimonial.date}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}

@@ -4,8 +4,19 @@ import DonateButton from '@/components/DonateButton';
 import ImpactCounter from '@/components/ImpactCounter';
 import RotatingImpact from '@/components/RotatingImpact';
 import ZeffyNewsletter from '@/components/ZeffyNewsletter';
+import { getPayloadClient } from '@/lib/payload';
 
-export default function Home() {
+export const revalidate = 30;
+
+export default async function Home() {
+  const payload = await getPayloadClient();
+  const { docs: testimonials } = await payload.find({
+    collection: 'testimonials',
+    where: { _status: { equals: 'published' } },
+    sort: '-createdAt',
+    limit: 3,
+  });
+
   return (
     <>
       {/* ===== HERO ===== */}
@@ -168,15 +179,11 @@ export default function Home() {
           </SectionReveal>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { quote: "The items provided in these bags are not available from any other support service and our families struggle to afford these basic necessities. Thank you for making a difference.", name: "Senior Multicultural Support Worker" },
-              { quote: "Our families are so grateful for the support in the cost-of-living crisis.", name: "School Support Worker" },
-              { quote: "The bags arrived at just the right time to help one of our parents who struggles with her special-needs child and is finding life really tough right now.", name: "School Support Worker" },
-            ].map((testimonial, i) => (
-              <SectionReveal key={i} delay={i * 0.1}>
+            {testimonials.map((testimonial, i) => (
+              <SectionReveal key={testimonial.id} delay={i * 0.1}>
                 <div className="bg-white rounded-2xl p-8 shadow-[var(--shadow-sm)] border-l-4 border-[var(--kindness)] h-full flex flex-col">
-                  <p className="text-[var(--trust-soft)] leading-relaxed flex-1 italic">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <p className="mt-4 font-semibold text-[var(--kindness)]">{testimonial.name}</p>
+                  <p className="text-[var(--trust-soft)] leading-relaxed flex-1 italic line-clamp-6">&ldquo;{testimonial.quote}&rdquo;</p>
+                  <p className="mt-4 font-semibold text-[var(--kindness)]">{testimonial.role}</p>
                 </div>
               </SectionReveal>
             ))}
