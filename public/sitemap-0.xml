@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://kindsisters.org.au</loc><lastmod>2026-04-12T15:17:33.624Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/about</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/contact</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/donate</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/events</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/get-involved</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/privacy</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/projects</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/projects/essentials-relief-bags</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/projects/womens-community-connect</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://kindsisters.org.au/stories</loc><lastmod>2026-04-12T15:17:33.625Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/about</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/contact</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/donate</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/events</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/get-involved</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/privacy</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/projects</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/projects/essentials-relief-bags</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/projects/womens-community-connect</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/social</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kindsisters.org.au/stories</loc><lastmod>2026-07-08T02:57:16.957Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
