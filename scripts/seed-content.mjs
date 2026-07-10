@@ -34,6 +34,18 @@ const testimonials = [
     quote:
       "I dropped off the bags to some of our most vulnerable families. They commented that the items in the essentials bags were so useful and they were so pleased for the support as these are items they just can't afford in the cost-of-living crisis.",
   },
+  {
+    role: 'School Chaplain',
+    date: 'July 2026',
+    quote:
+      'I just wanted to say a massive thank you again for all the bags we received. All the families were very appreciative.',
+  },
+  {
+    role: 'Parent',
+    date: 'July 2026',
+    quote:
+      'Good morning. I just wanted to say a big thank you for the donated bags I received on Monday containing home and pantry items. I also want to say a big thank you to the sponsor for their kindness and generosity. God Bless you all.',
+  },
 ]
 
 // Curated gallery photos from src/app/(frontend)/projects/page.tsx, with their
