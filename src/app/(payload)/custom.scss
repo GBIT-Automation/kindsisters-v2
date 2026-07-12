@@ -41,3 +41,50 @@
 .create-first-user__brand {
   margin-bottom: 1.5rem;
 }
+
+/* ---- Icons on the collection nav links ---- */
+#nav-users::before,
+#nav-media::before,
+#nav-gallery::before,
+#nav-blog::before,
+#nav-events::before,
+#nav-testimonials::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin-right: 0.6rem;
+  vertical-align: -3px;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+#nav-users::before {
+  -webkit-mask-image: url('/admin-icons/users.svg');
+  mask-image: url('/admin-icons/users.svg');
+}
+#nav-media::before {
+  -webkit-mask-image: url('/admin-icons/media.svg');
+  mask-image: url('/admin-icons/media.svg');
+}
+#nav-gallery::before {
+  -webkit-mask-image: url('/admin-icons/gallery.svg');
+  mask-image: url('/admin-icons/gallery.svg');
+}
+#nav-blog::before {
+  -webkit-mask-image: url('/admin-icons/blog.svg');
+  mask-image: url('/admin-icons/blog.svg');
+}
+#nav-events::before {
+  -webkit-mask-image: url('/admin-icons/events.svg');
+  mask-image: url('/admin-icons/events.svg');
+}
+#nav-testimonials::before {
+  -webkit-mask-image: url('/admin-icons/testimonials.svg');
+  mask-image: url('/admin-icons/testimonials.svg');
+}
