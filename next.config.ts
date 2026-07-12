@@ -24,18 +24,20 @@ const securityHeaders = [
   },
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+    value:
+      'camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(self "https://www.zeffy.com")',
   },
   {
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob: https://*.stripe.com",
-      "connect-src 'self' https://api.stripe.com",
-      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
+      "img-src 'self' data: blob:",
+      "connect-src 'self'",
+      // Zeffy donation + newsletter forms are embedded as iframes.
+      "frame-src 'self' https://www.zeffy.com",
       "frame-ancestors 'none'",
     ].join('; '),
   },
