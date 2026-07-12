@@ -26,7 +26,7 @@ export const requireMinImageEdge = (minEdge: number): CollectionBeforeValidateHo
       // APIError (400) surfaces the message cleanly in the admin instead of a
       // generic 500.
       throw new APIError(
-        `This image is too small (${width}×${height}px). Please upload a photo at least ${minEdge}px on its longest side — ideally the original from a phone or camera. If you need to resize an image, you can do it for free at https://www.iloveimg.com/resize-image`,
+        `This image is too small (${width}×${height}px). Please upload a photo at least ${minEdge}px on its longest side — ideally the original from a phone or camera.`,
         400,
       )
     }
