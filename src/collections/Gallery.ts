@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { isEditorOrAdmin, publishedOrLoggedIn } from '../access/roles'
+import { requireMinImageEdge } from '../hooks/requireMinImageEdge'
 
 // Photo gallery. Each item is an image with a caption/alt. Publicly readable;
 // staff create/edit/delete. Drafts let staff stage a photo before publishing;
@@ -15,6 +16,9 @@ export const Gallery: CollectionConfig = {
   },
   versions: { drafts: true },
   trash: true,
+  hooks: {
+    beforeValidate: [requireMinImageEdge(1200)],
+  },
   upload: {
     staticDir: 'public/media/gallery',
     mimeTypes: ['image/*'],

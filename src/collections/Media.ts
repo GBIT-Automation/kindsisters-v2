@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { isEditorOrAdmin } from '../access/roles'
+import { requireMinImageEdge } from '../hooks/requireMinImageEdge'
 
 // Uploaded images used by Blog/Events (and any future content). Images are
 // publicly readable (they render on the site); only staff can upload/change.
@@ -9,6 +10,9 @@ export const Media: CollectionConfig = {
   // Hidden from the nav/dashboard — it fills automatically when staff add
   // images to blog posts / events, so it needn't be a visible tile.
   admin: { hidden: true },
+  hooks: {
+    beforeValidate: [requireMinImageEdge(1200)],
+  },
   access: {
     read: () => true,
     create: isEditorOrAdmin,
