@@ -1,1 +1,43 @@
-/* Custom admin panel styles. Intentionally empty for now. */
+/* ---- Kind Sisters admin branding ----
+   Warms up the default Payload admin with the Kind Sisters palette.
+   Brand colours: kindness rose #E8709A / deep #C45B7F / soft #F5D5E0,
+   warmth #D4915E, cream #FAF7F2. */
+
+/* Softer, warm page background (light theme only; leave dark mode alone). */
+:root[data-theme='light'] {
+  --theme-bg: #faf7f2;
+}
+
+/* Primary actions (Create New, Save) in Kind Sisters rose. */
+.btn--style-primary {
+  --bg-color: #e8709a;
+  --hover-bg: #c45b7f;
+  --color: #ffffff;
+  --hover-color: #ffffff;
+}
+
+/* Dashboard collection cards: rounded, soft border, gentle rose lift on hover. */
+.dashboard .card {
+  border: 1px solid #f1dbe3;
+  border-radius: 10px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+.dashboard .card:hover {
+  border-color: #e8709a;
+  box-shadow: 0 6px 20px rgba(232, 112, 154, 0.15);
+  transform: translateY(-2px);
+}
+
+/* The card's create (+) button picks up the rose on card hover. */
+.dashboard .card:hover .card__actions {
+  color: #c45b7f;
+}
+
+/* Login / create-first-user screen: give the logo room to breathe. */
+.login__brand,
+.create-first-user__brand {
+  margin-bottom: 1.5rem;
+}

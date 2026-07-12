@@ -15,7 +15,21 @@ import { Testimonials } from './src/collections/Testimonials'
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default buildConfig({
-  admin: { user: Users.slug },
+  admin: {
+    user: Users.slug,
+    meta: {
+      titleSuffix: '— Kind Sisters',
+    },
+    components: {
+      graphics: {
+        Logo: '/src/admin/graphics/Logo#Logo',
+        Icon: '/src/admin/graphics/Icon#Icon',
+      },
+    },
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
+  },
   editor: lexicalEditor(),
   collections: [Users, Media, Gallery, Blog, Events, Testimonials],
   secret: process.env.PAYLOAD_SECRET || '',
