@@ -6,7 +6,7 @@ export const Logo = () => (
   <img
     src="/images/kind-sisters-logo.svg"
     alt="Kind Sisters"
-    style={{ width: '240px', height: 'auto', maxWidth: '100%' }}
+    style={{ width: '440px', height: 'auto', maxWidth: '80vw' }}
   />
 )
 

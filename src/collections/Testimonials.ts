@@ -6,9 +6,9 @@ import { isEditorOrAdmin, publishedOrLoggedIn } from '../access/roles'
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
   admin: {
-    useAsTitle: 'role',
-    // Show the quote in the list so editors can tell testimonials apart
-    // (many share the same role, e.g. "Parent").
+    // Use the quote as the document title so it is editable and meaningful
+    // when adding a testimonial (role is shared across many, e.g. "Parent").
+    useAsTitle: 'quote',
     defaultColumns: ['quote', 'role', 'date', '_status'],
   },
   access: {

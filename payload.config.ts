@@ -17,6 +17,9 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 export default buildConfig({
   admin: {
     user: Users.slug,
+    // Use Payload's built-in local avatar icon instead of the default Gravatar
+    // (external fetch is blocked by our CSP and keeps data in Australia).
+    avatar: 'default',
     meta: {
       titleSuffix: '— Kind Sisters',
     },
