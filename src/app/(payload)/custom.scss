@@ -42,21 +42,21 @@
   margin-bottom: 1.5rem;
 }
 
-/* ---- Icons on the collection nav links ---- */
-#nav-users::before,
-#nav-media::before,
-#nav-gallery::before,
-#nav-blog::before,
-#nav-events::before,
-#nav-testimonials::before {
+/* ---- Icons on the dashboard collection cards ---- */
+#card-users .card__title::before,
+#card-media .card__title::before,
+#card-gallery .card__title::before,
+#card-blog .card__title::before,
+#card-events .card__title::before,
+#card-testimonials .card__title::before {
   content: '';
   display: inline-block;
   flex-shrink: 0;
-  width: 17px;
-  height: 17px;
-  margin-right: 0.6rem;
-  vertical-align: -3px;
-  background-color: currentColor;
+  width: 24px;
+  height: 24px;
+  margin-right: 0.7rem;
+  vertical-align: -5px;
+  background-color: #e8709a; /* Kind Sisters rose */
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -64,27 +64,60 @@
   -webkit-mask-size: contain;
   mask-size: contain;
 }
-#nav-users::before {
+#card-users .card__title::before {
   -webkit-mask-image: url('/admin-icons/users.svg');
   mask-image: url('/admin-icons/users.svg');
 }
-#nav-media::before {
+#card-media .card__title::before {
   -webkit-mask-image: url('/admin-icons/media.svg');
   mask-image: url('/admin-icons/media.svg');
 }
-#nav-gallery::before {
+#card-gallery .card__title::before {
   -webkit-mask-image: url('/admin-icons/gallery.svg');
   mask-image: url('/admin-icons/gallery.svg');
 }
-#nav-blog::before {
+#card-blog .card__title::before {
   -webkit-mask-image: url('/admin-icons/blog.svg');
   mask-image: url('/admin-icons/blog.svg');
 }
-#nav-events::before {
+#card-events .card__title::before {
   -webkit-mask-image: url('/admin-icons/events.svg');
   mask-image: url('/admin-icons/events.svg');
 }
-#nav-testimonials::before {
+#card-testimonials .card__title::before {
   -webkit-mask-image: url('/admin-icons/testimonials.svg');
   mask-image: url('/admin-icons/testimonials.svg');
+}
+
+/* ---- Brief description under each dashboard card title ---- */
+#card-users .card__title::after,
+#card-media .card__title::after,
+#card-gallery .card__title::after,
+#card-blog .card__title::after,
+#card-events .card__title::after,
+#card-testimonials .card__title::after {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--theme-elevation-500);
+}
+#card-users .card__title::after {
+  content: 'Staff logins and roles';
+}
+#card-media .card__title::after {
+  content: 'Images used inside blog posts and events';
+}
+#card-gallery .card__title::after {
+  content: 'Photos shown in the website gallery';
+}
+#card-blog .card__title::after {
+  content: 'News posts and stories';
+}
+#card-events .card__title::after {
+  content: 'Upcoming events and gatherings';
+}
+#card-testimonials .card__title::after {
+  content: 'Quotes from the people you support';
 }
