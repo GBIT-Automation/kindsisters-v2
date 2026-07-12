@@ -6,6 +6,9 @@ import { isEditorOrAdmin } from '../access/roles'
 // sharp auto-generates web-optimised sizes on upload.
 export const Media: CollectionConfig = {
   slug: 'media',
+  // Hidden from the nav/dashboard — it fills automatically when staff add
+  // images to blog posts / events, so it needn't be a visible tile.
+  admin: { hidden: true },
   access: {
     read: () => true,
     create: isEditorOrAdmin,

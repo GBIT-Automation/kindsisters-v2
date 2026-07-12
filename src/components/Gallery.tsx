@@ -64,14 +64,16 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
           aria-modal="true"
           aria-label={lightboxImage.alt}
         >
-          <div className="relative" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative h-[85vh] w-full max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={lightboxImage.src}
               alt={lightboxImage.alt}
-              width={lightboxImage.width}
-              height={lightboxImage.height}
-              sizes="90vw"
-              className="h-auto max-h-[85vh] w-auto max-w-[90vw] rounded-[var(--radius-lg)] object-contain shadow-[var(--shadow-lg)]"
+              fill
+              sizes="(max-width: 896px) 90vw, 896px"
+              className="object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
             />
             <button
               onClick={() => setLightboxImage(null)}
