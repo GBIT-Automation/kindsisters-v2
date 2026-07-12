@@ -38,5 +38,15 @@ export const Users: CollectionConfig = {
       ],
     },
     { name: 'name', type: 'text' },
+    // Logout link on the account page (an easy, obvious way to sign out).
+    {
+      name: 'logout',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: '/src/admin/components/LogoutLink#LogoutLink',
+        },
+      },
+    },
   ],
 }
