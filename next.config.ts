@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 import { withPayload } from "@payloadcms/next/withPayload";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const securityHeaders = [
   {
@@ -44,6 +48,16 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Standalone build for VPS deploy (BinaryLane): ships a self-contained
+  // server.js with only the traced dependencies. sharp + the sqlite driver are
+  // native, so make sure they're traced into the bundle.
+  output: 'standalone',
+  // Pin the tracing root to this project (a stray lockfile above it otherwise
+  // makes Next nest the standalone output under the full path).
+  outputFileTracingRoot: projectRoot,
+  outputFileTracingIncludes: {
+    '/**': ['./node_modules/sharp/**/*', './node_modules/@libsql/**/*'],
+  },
   async headers() {
     return [
       {
