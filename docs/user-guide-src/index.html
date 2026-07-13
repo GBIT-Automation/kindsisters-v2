@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<title>Kind Sisters — Website Content Guide</title>
+<style>
+  :root{
+    --kindness:#E8709A; --kindness-deep:#C45B7F; --kindness-soft:#F5D5E0;
+    --trust:#2C3E50; --trust-soft:#5b6b7a; --earth:#FAF7F2; --canvas:#ffffff;
+    --warmth:#D4915E;
+  }
+  @page{ size:A4; margin:18mm 16mm; }
+  *{ box-sizing:border-box; }
+  body{
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--trust); line-height:1.6; font-size:11.5pt; margin:0;
+  }
+  h1,h2,h3{ font-family:Georgia,"Times New Roman",serif; color:var(--trust); line-height:1.2; }
+  a{ color:var(--kindness-deep); }
+  .serif{ font-family:Georgia,serif; }
+
+  /* Cover */
+  .cover{ height:255mm; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; background:var(--earth);
+    page-break-after:always; }
+  .cover img{ width:300px; max-width:70%; margin-bottom:28px; }
+  .cover h1{ font-size:34pt; margin:6px 0; color:var(--trust); }
+  .cover .sub{ font-size:15pt; color:var(--kindness-deep); margin-top:4px; }
+  .cover .meta{ margin-top:36px; color:var(--trust-soft); font-size:11pt; }
+
+  .section{ page-break-before:always; }
+  h2{ font-size:20pt; color:var(--kindness-deep); border-bottom:2px solid var(--kindness-soft);
+    padding-bottom:8px; margin:0 0 14px; }
+  h3{ font-size:13.5pt; margin:20px 0 6px; color:var(--trust); }
+  p{ margin:8px 0; }
+  ol,ul{ margin:8px 0 8px 4px; padding-left:20px; }
+  li{ margin:5px 0; }
+  .lead{ color:var(--trust-soft); font-size:12pt; }
+
+  figure{ margin:16px 0 6px; page-break-inside:avoid; }
+  figure img{ width:100%; border:1px solid #eadfe4; border-radius:8px;
+    box-shadow:0 4px 14px rgba(44,62,80,.08); }
+  figcaption{ font-size:9.5pt; color:var(--trust-soft); margin-top:6px; text-align:center; }
+
+  .tip{ background:#FDF2F6; border-left:4px solid var(--kindness); border-radius:6px;
+    padding:10px 14px; margin:14px 0; font-size:10.5pt; }
+  .tip b{ color:var(--kindness-deep); }
+  .pill{ display:inline-block; background:var(--kindness); color:#fff; border-radius:20px;
+    padding:2px 12px; font-size:10pt; font-weight:600; }
+
+  /* Last page */
+  .credits{ page-break-before:always; background:var(--trust); color:#fff; height:255mm;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .credits img{ width:230px; max-width:60%; background:#fff; padding:18px 22px; border-radius:12px; }
+  .credits h2{ color:#fff; border:none; font-size:22pt; margin:26px 0 4px; }
+  .credits .by{ color:var(--kindness-soft); font-size:13pt; letter-spacing:.5px; }
+  .credits .contact{ margin-top:26px; font-size:11.5pt; line-height:2; }
+  .credits .contact a{ color:#fff; text-decoration:none; }
+  .credits .rule{ width:60px; height:3px; background:var(--kindness); margin:22px auto; border-radius:2px; }
+  .credits .fine{ margin-top:30px; font-size:9pt; color:#9fb0c0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <img src="ks-logo.png" alt="Kind Sisters" />
+  <h1>Website Content Guide</h1>
+  <div class="sub">How to update your website yourself</div>
+  <div class="meta">Prepared for Kind Sisters &nbsp;•&nbsp; July 2026</div>
+</div>
+
+<!-- INTRO -->
+<div class="section">
+  <h2>What this guide covers</h2>
+  <p class="lead">Your website has a simple admin area where you can add and change content yourself, with no code and no developer. This guide shows you how.</p>
+  <p>You are in control of four things:</p>
+  <ul>
+    <li><b>Gallery</b> — the photos shown on your Programs page.</li>
+    <li><b>Blog</b> — news posts and stories.</li>
+    <li><b>Events</b> — upcoming events and gatherings.</li>
+    <li><b>Testimonials</b> — quotes from the people you support.</li>
+  </ul>
+  <p>Everything you add can be saved as a draft first, published when you are ready, and recovered if you delete it by mistake. This guide walks through each task with pictures.</p>
+  <div class="tip"><b>The golden rule:</b> nothing you type appears on the live website until you press <b>Publish</b>. So you can experiment freely.</div>
+</div>
+
+<!-- LOGGING IN -->
+<div class="section">
+  <h2>1. Logging in</h2>
+  <p>Go to your website address followed by <b>/admin</b>. For example:</p>
+  <p><span class="pill">kindsisters.org.au/admin</span></p>
+  <ol>
+    <li>Enter your email and password (the login we set up for you).</li>
+    <li>Click <b>Login</b>.</li>
+  </ol>
+  <div class="tip">Forgot your password? Click <b>Forgot password?</b> and follow the email link.</div>
+  <figure><img src="01-login.png" alt="Login screen" /><figcaption>The login screen</figcaption></figure>
+</div>
+
+<!-- DASHBOARD -->
+<div class="section">
+  <h2>2. The dashboard</h2>
+  <p>After you log in you see the dashboard. Each card is a section you can manage. Click a card to open it. A short line under each name reminds you what it holds.</p>
+  <figure><img src="02-dashboard.png" alt="Dashboard" /><figcaption>The dashboard — your four content areas, plus staff logins</figcaption></figure>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+  <h2>3. Photo Gallery</h2>
+  <p>These are the photos on your Programs page. Click <b>Gallery</b> on the dashboard to open it. You see all your photos in a list. Click any row to edit a photo, or click <b>Create New</b> to add one.</p>
+  <figure><img src="03-gallery-list.png" alt="Gallery list" /><figcaption>Your gallery photos — click a row to edit, or Create New to add</figcaption></figure>
+  <h3>Add a photo</h3>
+  <ol>
+    <li>Click <b>Create New</b> (top right).</li>
+    <li>Drag your photo into the upload box, or click to choose a file.</li>
+    <li>Type a short caption in <b>Caption / alt text</b>. This describes the photo for visitors and search engines.</li>
+    <li>Click <b>Publish</b>. It appears in the website gallery within a minute.</li>
+  </ol>
+  <div class="tip"><b>Photo size:</b> use a good-quality photo, at least 1200 pixels on the longest side. If a photo is too small, the system will let you know. Photos straight from a phone or camera are always fine.</div>
+  <figure><img src="04-gallery-create.png" alt="Add a gallery photo" /><figcaption>Adding a new gallery photo</figcaption></figure>
+</div>
+
+<!-- BLOG -->
+<div class="section">
+  <h2>4. Blog posts</h2>
+  <p>Share news and stories with a full writing area.</p>
+  <ol>
+    <li>Click <b>Blog</b>, then <b>Create New</b>.</li>
+    <li>Type a <b>Title</b>. The web address fills in automatically.</li>
+    <li>Add a hero image if you have one.</li>
+    <li>Write your post in the editor. You can use headings, bold, links, and lists.</li>
+    <li>Set a publish date, then click <b>Publish</b>.</li>
+  </ol>
+  <figure><img src="05-blog-create.png" alt="Write a blog post" /><figcaption>Writing a blog post</figcaption></figure>
+</div>
+
+<!-- EVENTS -->
+<div class="section">
+  <h2>5. Events</h2>
+  <p>Add upcoming events to the Events page.</p>
+  <ol>
+    <li>Click <b>Events</b>, then <b>Create New</b>.</li>
+    <li>Enter the title, date, and location.</li>
+    <li>Add a description and an image if you have one.</li>
+    <li>Click <b>Publish</b>.</li>
+  </ol>
+  <p>When there are no published events, the Events page shows a friendly "Stay tuned" message instead.</p>
+  <figure><img src="06-events-create.png" alt="Add an event" /><figcaption>Adding an event</figcaption></figure>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section">
+  <h2>6. Testimonials</h2>
+  <p>Quotes from families, support workers, and the community.</p>
+  <ol>
+    <li>Click <b>Testimonials</b>, then <b>Create New</b>.</li>
+    <li>Type the <b>quote</b>.</li>
+    <li>Add the <b>role</b> of the person (for example, Parent or School Support Worker). Names are kept private.</li>
+    <li>Add a date if you like, then click <b>Publish</b>.</li>
+  </ol>
+  <figure><img src="07-testimonials-create.png" alt="Add a testimonial" /><figcaption>Adding a testimonial</figcaption></figure>
+</div>
+
+<!-- PUBLISH VS DRAFT -->
+<div class="section">
+  <h2>7. Publishing and drafts</h2>
+  <p>Every item has two ways to save, shown in the top right when you are editing.</p>
+  <ul>
+    <li><b>Save as Draft</b> — keeps your work private. It does not appear on the website. Come back and finish it later.</li>
+    <li><b>Publish</b> — puts it live on the website within about a minute.</li>
+  </ul>
+  <p>You can unpublish something at any time by changing it back to a draft.</p>
+  <figure><img src="08-gallery-edit.png" alt="Publish and draft controls" /><figcaption>The Publish controls appear at the top right when editing</figcaption></figure>
+</div>
+
+<!-- DELETE + RESTORE -->
+<div class="section">
+  <h2>8. Deleting and restoring</h2>
+  <p>Deleting is safe. Removed items go to a <b>Trash</b> bin, not gone for good.</p>
+  <ol>
+    <li>Open the item, click the <b>&#8942;</b> menu (top right), and choose <b>Delete</b>.</li>
+    <li>To get it back, open the <b>Trash</b> view for that section, open the item, and choose <b>Restore</b>.</li>
+  </ol>
+  <div class="tip">Only empty the Trash when you are sure. Emptying it removes items for good.</div>
+</div>
+
+<!-- VERSIONS -->
+<div class="section">
+  <h2>9. Undoing a change</h2>
+  <p>Every item keeps a history of its previous versions. If you make a change you are not happy with, you can go back.</p>
+  <ol>
+    <li>Open the item and look for its <b>Versions</b> history.</li>
+    <li>Pick an earlier version and choose <b>Restore</b>.</li>
+  </ol>
+  <figure><img src="09-gallery-versions.png" alt="Version history" /><figcaption>Version history — restore an earlier version any time</figcaption></figure>
+</div>
+
+<!-- USERS -->
+<div class="section">
+  <h2>10. Staff logins</h2>
+  <p>You can give other staff their own login. There are two levels:</p>
+  <ul>
+    <li><b>Admin</b> — full control, including managing other users. This is you.</li>
+    <li><b>Editor</b> — can manage all the content (Gallery, Blog, Events, Testimonials) but cannot see or change user accounts.</li>
+  </ul>
+  <p>Click <b>Users</b> on the dashboard to see your staff logins.</p>
+  <figure><img src="10-users-list.png" alt="Users list" /><figcaption>Your staff logins</figcaption></figure>
+  <h3>Add a staff member</h3>
+  <ol>
+    <li>Click <b>Create New</b> (top right).</li>
+    <li>Enter their email, set a password, and choose the role <b>Editor</b>.</li>
+    <li>Click <b>Save</b>. They can now log in with their own details.</li>
+  </ol>
+  <figure><img src="11-users-create.png" alt="Add a staff login" /><figcaption>Adding an editor login</figcaption></figure>
+</div>
+
+<!-- ACCOUNT + LOGOUT -->
+<div class="section">
+  <h2>11. Your account and logging out</h2>
+  <p>Your account page lets you change your own password. It also has the <b>Log out</b> button at the bottom.</p>
+  <p>To log out, open your account page and click <b>Log out</b>, or add <b>/admin/logout</b> to your website address.</p>
+  <figure><img src="12-account.png" alt="Account page" /><figcaption>Your account page, with the Log out button</figcaption></figure>
+</div>
+
+<!-- CREDITS / LAST PAGE -->
+<div class="credits">
+  <img src="gbit-logo.png" alt="GBIT Automation" />
+  <h2>Created by</h2>
+  <div class="by">GBIT Automation</div>
+  <div class="rule"></div>
+  <div class="contact">
+    Gavin Brown, Director<br/>
+    info@gbitautomation.com.au<br/>
+    0407 155 108<br/>
+    gbitautomation.com.au
+  </div>
+  <div class="fine">Building Apps &nbsp;•&nbsp; Connecting Software &nbsp;•&nbsp; Automating Processes &nbsp;•&nbsp; Digital Forms</div>
+</div>
+
+</body>
+</html>
