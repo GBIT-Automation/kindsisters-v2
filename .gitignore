@@ -49,3 +49,6 @@ next-env.d.ts
 /public/media
 # src/payload-types.ts is committed (generated) so production/CI builds have
 # the collection types without needing to regenerate them.
+
+# Exported personal communications (never commit message content)
+comms-exports/
