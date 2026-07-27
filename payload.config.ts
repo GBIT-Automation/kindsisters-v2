@@ -46,9 +46,16 @@ export default buildConfig({
     // pushes when NODE_ENV !== 'production'), so a clean database has no
     // tables and any page that queries a collection fails. Handing the
     // migrations here makes the adapter run them on connect, which covers
-    // both `next build` inside Docker and the container starting against the
-    // mounted volume. Dev is unaffected and still uses schema push.
-    prodMigrations: migrations,
+    // both `next build` inside the image and the container starting against
+    // its mounted volume.
+    //
+    // Gated behind an explicit flag, set only in the Dockerfile. A local
+    // production build would otherwise run migrations against the dev
+    // database, which Payload blocks with an interactive "data loss will
+    // occur" prompt that hangs the build. The dev database is push-managed
+    // and must stay that way.
+    prodMigrations:
+      process.env.PAYLOAD_RUN_MIGRATIONS === 'true' ? migrations : undefined,
   }),
   sharp,
 })

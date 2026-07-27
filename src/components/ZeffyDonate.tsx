@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Script from 'next/script';
 
 /**
  * Zeffy embedded donation form.
@@ -11,22 +12,43 @@ import { useState } from 'react';
  * tax receipts entirely inside its own iframe, so the donor never leaves this
  * page and no card data touches the Kind Sisters site.
  *
- * The embed URL comes from Jody's Zeffy dashboard once her account is verified
- * (Share -> Embed on the donation form). It is supplied via the
- * NEXT_PUBLIC_ZEFFY_EMBED_URL environment variable.
+ * This uses Zeffy's v2 script embed: the script finds the `data-zeffy-embed`
+ * element, injects its own iframe, and resizes it to fit the form. That is what
+ * removes the internal scrollbar a fixed-height iframe leaves you with. If the
+ * script fails to load we render a plain fixed-height iframe instead, matching
+ * the fallback in Zeffy's own snippet.
  *
- * TODO: VERIFY — set NEXT_PUBLIC_ZEFFY_EMBED_URL to the real embed URL Jody
- * sends through. Until then this renders a "coming soon" placeholder.
+ * The script host must stay in `script-src` in the CSP (next.config.ts). If it
+ * is dropped, the script is blocked, the fallback renders, and the form keeps
+ * working but stops auto-sizing — a silent degrade, so check both after any
+ * CSP change.
+ *
+ * The embed URL comes from Jody's Zeffy dashboard (Share -> Embed on the
+ * donation form) via NEXT_PUBLIC_ZEFFY_EMBED_URL. NEXT_PUBLIC_* is inlined at
+ * build time, so it must be set as a build arg, not only a runtime env var.
  */
 
 const ZEFFY_EMBED_URL = process.env.NEXT_PUBLIC_ZEFFY_EMBED_URL ?? '';
+const ZEFFY_SCRIPT_URL = 'https://www.zeffy.com/embed/v2/zeffy-embed.js';
 
-// Zeffy embed height is fixed (not auto-responsive). Tune this once the real
-// form exists so there is no internal scrollbar on desktop.
-const IFRAME_HEIGHT = 1100;
+// Applies to the fallback iframe only. The script embed sizes itself.
+const FALLBACK_HEIGHT = 450;
+
+/**
+ * The script embed takes a path (`/embed/donation-form/...`) while the fallback
+ * iframe takes the absolute URL. Derive one from the other so there is a single
+ * environment variable to keep correct.
+ */
+function embedPath(url: string): string {
+  try {
+    return new URL(url).pathname;
+  } catch {
+    return '';
+  }
+}
 
 export default function ZeffyDonate() {
-  const [loaded, setLoaded] = useState(false);
+  const [scriptFailed, setScriptFailed] = useState(false);
 
   if (!ZEFFY_EMBED_URL) {
     return (
@@ -52,21 +74,31 @@ export default function ZeffyDonate() {
 
   return (
     <div className="relative">
-      {!loaded && (
+      {scriptFailed ? (
         <div
-          className="absolute inset-0 flex items-center justify-center rounded-[var(--radius-lg)] bg-canvas"
-          aria-hidden="true"
+          className="relative w-full overflow-hidden rounded-[var(--radius-lg)]"
+          style={{ height: FALLBACK_HEIGHT }}
         >
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--border-default)] border-t-kindness" />
+          <iframe
+            title="Donation form powered by Zeffy"
+            src={ZEFFY_EMBED_URL}
+            allow="payment"
+            className="absolute inset-0 h-full w-full"
+            style={{ border: 0 }}
+          />
         </div>
+      ) : (
+        <div
+          data-zeffy-embed=""
+          data-form-url={embedPath(ZEFFY_EMBED_URL)}
+          className="w-full"
+        />
       )}
-      <iframe
-        title="Donate to Kind Sisters"
-        src={ZEFFY_EMBED_URL}
-        onLoad={() => setLoaded(true)}
-        allow="payment"
-        className="w-full rounded-[var(--radius-lg)] bg-canvas"
-        style={{ height: IFRAME_HEIGHT, border: 'none' }}
+
+      <Script
+        src={ZEFFY_SCRIPT_URL}
+        strategy="afterInteractive"
+        onError={() => setScriptFailed(true)}
       />
     </div>
   );

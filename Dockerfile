@@ -25,6 +25,11 @@ COPY . .
 # The real one lives on the mounted volume at runtime.
 ENV DATABASE_URL="file:/tmp/build.db"
 
+# Opt this build into running Payload migrations on connect. Gated by an
+# explicit flag so a developer's local `npm run build` never runs migrations
+# against their push-managed dev database. See payload.config.ts.
+ENV PAYLOAD_RUN_MIGRATIONS=true
+
 # No default: Coolify supplies this as a build arg. Leaving it unset fails the
 # build loudly rather than baking a guessable value into the image.
 ARG PAYLOAD_SECRET
@@ -56,6 +61,10 @@ ENV HOSTNAME=0.0.0.0
 # DATABASE_URL still writes to persistent storage rather than silently losing
 # Jody's content on the next redeploy.
 ENV DATABASE_URL="file:/data/kindsisters.db"
+
+# Apply pending migrations when the container starts, so a fresh volume gets
+# its schema and an upgraded image applies any new migration on boot.
+ENV PAYLOAD_RUN_MIGRATIONS=true
 
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static

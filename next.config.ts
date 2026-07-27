@@ -35,7 +35,10 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // www.zeffy.com serves the v2 donation embed script, which injects and
+      // auto-sizes the donation iframe. Without it the embed silently falls
+      // back to a fixed-height iframe (see ZeffyDonate.tsx).
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.zeffy.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob:",
