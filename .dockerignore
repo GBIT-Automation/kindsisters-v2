@@ -1,0 +1,31 @@
+# Build context exclusions. Keeps the image small and, more importantly, keeps
+# local secrets and Jody's local content out of the build layers.
+
+node_modules
+.next
+.git
+.github
+
+# Local secrets — Coolify supplies these as env vars, never the image.
+.env
+.env.*
+!.env.example
+
+# Local Payload data. The production database and uploads live on the mounted
+# volume; copying local ones in would overwrite nothing but would leak content
+# into the image layers.
+*.db
+*.db-*
+public/media
+
+# Editor / OS noise
+.DS_Store
+*.log
+npm-debug.log*
+.vscode
+.idea
+
+# Docs and working files that do not belong in a runtime image
+docs
+*.docx
+TODO-JODY.md

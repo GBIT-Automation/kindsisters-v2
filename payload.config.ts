@@ -5,6 +5,7 @@ import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+import { migrations } from './src/migrations'
 import { Users } from './src/collections/Users'
 import { Media } from './src/collections/Media'
 import { Gallery } from './src/collections/Gallery'
@@ -41,6 +42,13 @@ export default buildConfig({
   },
   db: sqliteAdapter({
     client: { url: process.env.DATABASE_URL || 'file:./kindsisters.db' },
+    // In production the adapter does not auto-create the schema (it only
+    // pushes when NODE_ENV !== 'production'), so a clean database has no
+    // tables and any page that queries a collection fails. Handing the
+    // migrations here makes the adapter run them on connect, which covers
+    // both `next build` inside Docker and the container starting against the
+    // mounted volume. Dev is unaffected and still uses schema push.
+    prodMigrations: migrations,
   }),
   sharp,
 })
