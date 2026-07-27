@@ -87,6 +87,17 @@ export default function Footer() {
           <p className="text-xs text-white/40">
             Australian Kind Sisters Ltd trading as Kind Sisters &copy; {new Date().getFullYear()}
           </p>
+          <p className="mt-2 text-xs text-white/30">
+            Website by{' '}
+            <a
+              href="https://gbit.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--kindness-soft)] transition-colors"
+            >
+              GBIT Automation
+            </a>
+          </p>
         </div>
       </div>
     </footer>
