@@ -52,3 +52,10 @@ next-env.d.ts
 
 # Exported personal communications (never commit message content)
 comms-exports/
+
+# Generated at build time by next-sitemap. Committing them meant a review build
+# (which correctly generates no sitemap) still served a stale one listing every
+# URL, and shipped a crawlable robots.txt regardless of the target environment.
+/public/robots.txt
+/public/sitemap.xml
+/public/sitemap-*.xml

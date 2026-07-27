@@ -5,6 +5,19 @@ import { fileURLToPath } from "url";
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
+// Only the real public site may be indexed. Anything else (the ks.gbit.au
+// review deploy, previews, local) is kept out of search results.
+//
+// This keys off the site URL rather than a separate flag on purpose: at
+// cutover you change NEXT_PUBLIC_SITE_URL to the production domain and
+// indexing switches itself on. A standalone NOINDEX flag would have to be
+// remembered, and forgetting it in either direction is bad — either the
+// review site gets listed, or the live charity site quietly disappears from
+// Google.
+export const PRODUCTION_SITE_URL = 'https://kindsisters.org.au';
+const isProductionSite =
+  (process.env.NEXT_PUBLIC_SITE_URL ?? '').replace(/\/$/, '') === PRODUCTION_SITE_URL;
+
 const securityHeaders = [
   {
     key: 'X-DNS-Prefetch-Control',
@@ -65,7 +78,18 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/(.*)',
-        headers: securityHeaders,
+        headers: isProductionSite
+          ? securityHeaders
+          : [
+              ...securityHeaders,
+              // Belt and braces alongside robots.txt and the meta tag. A header
+              // covers non-HTML responses (images, PDFs, API routes) that a
+              // meta tag cannot reach.
+              {
+                key: 'X-Robots-Tag',
+                value: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
+              },
+            ],
       },
     ];
   },

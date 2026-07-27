@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_AU',
   },
+  // Third layer, after the X-Robots-Tag header and robots.txt: the meta tag is
+  // what a crawler honours if it reaches a page from a link rather than a
+  // crawl. Production is left untouched so the live site indexes normally.
+  ...(process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') === 'https://kindsisters.org.au'
+    ? {}
+    : { robots: { index: false, follow: false, nocache: true } }),
 };
 
 export default function RootLayout({
