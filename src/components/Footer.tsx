@@ -90,7 +90,7 @@ export default function Footer() {
           <p className="mt-2 text-xs text-white/30">
             Website by{' '}
             <a
-              href="https://gbit.au"
+              href="https://gbitautomation.com.au"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--kindness-soft)] transition-colors"

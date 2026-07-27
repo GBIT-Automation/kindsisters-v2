@@ -241,7 +241,7 @@ export default async function Home() {
                 <div key={setIndex} className="flex shrink-0 items-center gap-16 px-8" aria-hidden={setIndex > 0}>
                   {[
                     { name: 'City of Stirling', logo: '/images/partners/city-of-stirling-logo.svg', url: 'https://www.stirling.wa.gov.au' },
-                    { name: 'GBIT Automation', logo: '/images/partners/gbit-logo.png', url: 'https://gbit.au' },
+                    { name: 'GBIT Automation', logo: '/images/partners/gbit-logo.png', url: 'https://gbitautomation.com.au' },
                     { name: 'Sisters of Charity Inc', logo: '/images/partners/sisters-of-charity-logo.png', url: 'https://www.sistersofcharity.org.au', heightClass: 'h-24' },
                     { name: 'Street Smart Australia', logo: '/images/partners/street-smart-logo.jpg', url: 'https://streetsmartaustralia.org' },
                     { name: 'Relate Counselling', logo: '/images/partners/relate-counselling-logo.png', url: 'https://www.relatecounselling.com.au' },
