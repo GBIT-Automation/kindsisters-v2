@@ -40,6 +40,52 @@ dig +short A kindsisters.org.au
 dig +short CNAME autodiscover.kindsisters.org.au
 ```
 
+All five records above were **re-verified live on 2026-07-29** and still match this section exactly.
+
+---
+
+## 0.1 State as at 2026-07-29 (read this before Part A)
+
+**Where the site actually runs now.** Parts A/B below describe a dedicated BinaryLane VPS with
+nginx + PM2. That is **not** what was built. The review deploy runs on the shared GBIT apps box
+`gbit-apps-prod-per` (`43.224.180.229`) under **Coolify + Traefik + Docker**, as Coolify app
+`kindsisters-v2` (uuid `igckbl03kyjckoeinazlglnv`), serving `https://ks.gbit.au`. Persistent state
+is in two Docker volumes: `...-ks-database` (`/data/kindsisters.db`) and `...-ks-media`
+(`/app/public/media`). Treat Parts A/B/C as the original design intent and adapt them to the
+Coolify reality before executing, especially the backup script in Part C, which points at
+`/var/www/kindsisters` paths that do not exist on this host.
+
+**Access to the review site is now open.** The Traefik `basicauth` middleware that used to guard
+`ks.gbit.au` was **removed on 2026-07-29** so Jody could review the site without a shared password.
+Consequences to hold in mind:
+- `ks.gbit.au` is publicly reachable. It is kept out of search **only** by `X-Robots-Tag: noindex`
+  plus `robots.txt Disallow: /`, both driven by the site URL (see below). There is no second layer.
+- `/admin` is protected by **Payload's own per-user login only**. Jody has her own account
+  (confirmed 2026-07-29: `/admin` renders the login form, not "create first user").
+- Password guessing is already throttled by Payload: `Users.ts` sets `auth: true` with no
+  overrides, so the defaults apply — **5 failed attempts locks that account for 10 minutes**
+  (`maxLoginAttempts: 5`, `lockTime: 600000`, verified in
+  `node_modules/payload/dist/collections/config/defaults.js:126`). No extra layer needed for
+  password guessing. What is *not* covered is a volumetric flood of login requests, which would
+  burn CPU on a **shared** box (bcrypt is deliberately expensive) and could affect the other apps
+  on `gbit-apps-prod-per`. If that ever becomes a concern, a Traefik `rateLimit` middleware on
+  `/api/users/login` is the cheap fix. Not required today.
+
+- [ ] **Decide before go-live:** does `ks.gbit.au` stay up after cutover as a staging URL, or get
+  torn down? If it stays, it must keep its `noindex` so it never competes with the live domain.
+
+### ⚠️ The one that will silently break SEO
+
+`NEXT_PUBLIC_SITE_URL` is currently **`https://ks.gbit.au`**. Indexing keys off it
+([next.config.ts:17](../../../next.config.ts)): the site is indexable **only** when the value is
+exactly `https://kindsisters.org.au`. Leave it pointing at `ks.gbit.au` after cutover and the live
+charity site serves `noindex, nofollow` to Google and never ranks, with no visible symptom on the
+page itself.
+
+`NEXT_PUBLIC_*` values are **inlined at build time**, so changing this in Coolify and restarting is
+**not** enough. The app must be **rebuilt and redeployed** after the change. This is a Part D step,
+not a post-cutover cleanup. See D0 below.
+
 ---
 
 ## 1. Preconditions (gather before starting)
@@ -49,6 +95,11 @@ dig +short CNAME autodiscover.kindsisters.org.au
   nameservers and to cancel hosting without touching the domain. Gavin handed Jody this login on
   2025-07-12; confirm who holds it now.
 - [ ] **VentraIP renewal date** → compute the 45-day refund deadline. Record it here: `_______`.
+  **The refund window is real** (confirmed by Gavin, 2026-07-29), so Part E is genuinely time-boxed.
+  The working date in play is **Mon 3 Aug 2026**. Still `TODO: VERIFY` against the VIPControl
+  invoice: whether the guarantee is 40 or 45 days from the renewal date, which moves the deadline.
+  Pin the exact date before letting it drive the schedule, and do not compress the Part D
+  verification soak to hit it. Email breaking costs more than the hosting fee.
 - [ ] BinaryLane account (GBIT) with a payment method.
 - [ ] The built site (from the build plan) passing `npm run build` locally.
 - [ ] Decide the **DNS host** (Part D, Step 1).
@@ -182,6 +233,21 @@ The site now has a **database + uploaded media** — back both up, to an **Austr
 
 **This is the critical section. Do it carefully and verify email before Part E.**
 
+**Ordering rule (why this section comes before Part E).** The domain's nameservers are
+`ns1/ns2.syd6.hostingplatform.net.au`, which are **tied to the VentraIP cPanel plan**, and the MX
+records point at Microsoft 365. Cancelling the hosting while the zone still lives there takes the
+**DNS zone** down with it, which stops **email**, not just the website. So the order is fixed:
+**move DNS off the cPanel nameservers first (D1-D4), verify mail both directions (D6), let it
+settle, and only then cancel hosting (Part E).** Never the other way round.
+
+- [ ] **D0. Flip the site URL and rebuild.** Set `NEXT_PUBLIC_SITE_URL=https://kindsisters.org.au`
+  in the Coolify app's environment, then **rebuild and redeploy** (a restart will not pick it up,
+  see Section 0.1). Verify before switching DNS, using the Host header so it works pre-cutover:
+  ```bash
+  curl -sI -H 'Host: kindsisters.org.au' https://ks.gbit.au/ | grep -i x-robots-tag
+  # expect: NO x-robots-tag header (indexable). If noindex still appears, the rebuild did not take.
+  ```
+  Also confirm `/robots.txt` no longer says `Disallow: /` and `/sitemap.xml` now returns 200.
 - [ ] **D1. Choose the DNS host** (must survive cancelling the cPanel plan). Options:
   - **VentraIP standalone DNS** in VIPControl (keeps everything with one AU provider; the domain
     stays with VentraIP, DNS zone moves off the cPanel-tied nameservers). Preferred for AU consistency.
@@ -246,6 +312,9 @@ go-ahead** AND we are **within the 45-day refund window**.
 - [ ] Email send + receive confirmed; autodiscover working.
 - [ ] `/admin` reachable; Jody + editor logins work; a test blog/gallery/event/testimonial
   publishes and appears on the site.
+- [ ] **Indexing is ON for the live domain:** `curl -sI https://kindsisters.org.au/ | grep -i x-robots-tag`
+  returns nothing, `/robots.txt` no longer disallows, `/sitemap.xml` returns 200. Then submit the
+  sitemap in Search Console. (If `noindex` is still served, `NEXT_PUBLIC_SITE_URL` did not take.)
 - [ ] Nightly backup ran; a restore was tested.
 - [ ] Monitoring: uptime check on the domain; disk/RAM 75% alerts to gavin@gbit.au.
 - [ ] VentraIP hosting cancelled, domain retained, refund confirmed.
@@ -254,7 +323,13 @@ go-ahead** AND we are **within the 45-day refund window**.
 
 ## Open items
 
-- `TODO: VERIFY` the exact VentraIP renewal date → the 45-day deadline governs Part E timing.
+- `TODO: VERIFY` the exact VentraIP renewal date → the deadline governs Part E timing. The window
+  itself is confirmed real (Gavin, 2026-07-29); what is unpinned is 40 vs 45 days, and therefore
+  whether the date is 3 Aug or later. Source of truth is the VIPControl renewal invoice.
+- `TODO: VERIFY` that the guarantee covers a **renewal** at all, not just a first purchase. Many
+  hosts refund initial purchases only. Worth confirming before Part E timing drives anything.
+- Reconcile Parts A/B/C with the actual Coolify deployment (Section 0.1). As written they describe
+  a bare VPS with nginx + PM2 that was never built.
 - Consider adding **DKIM + DMARC** for kindsisters.org.au while in the DNS zone (improves email
   deliverability; not required for mail to flow).
 - Confirm who currently holds the VIPControl login (Gavin handed it to Jody 2025-07-12).
