@@ -53,6 +53,12 @@ next-env.d.ts
 # Exported personal communications (never commit message content)
 comms-exports/
 
+# Working documents and social assets kept alongside the repo. These are
+# planning/marketing material, not part of the site build. Root-level only,
+# so docs/*.docx can still be committed deliberately if ever needed.
+/*.docx
+/social/
+
 # Generated at build time by next-sitemap. Committing them meant a review build
 # (which correctly generates no sitemap) still served a stale one listing every
 # URL, and shipped a crawlable robots.txt regardless of the target environment.
