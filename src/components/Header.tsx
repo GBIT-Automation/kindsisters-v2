@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,14 +13,11 @@ const projectLinks = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  // Jody (4 Oct 2026): keep the banner stable. The header used to start as a large
+  // centred logo and shrink on scroll, which shifted the page; it now stays in the
+  // compact layout at all times.
+  const scrolled = true;
   const [projectsOpen, setProjectsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { href: '/about', label: 'About' },
@@ -42,30 +39,6 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Expanded state: Logo centred with Donate button */}
-          <div
-            className="transition-all duration-500 overflow-hidden"
-            style={{
-              maxHeight: scrolled ? '0px' : '16rem',
-              opacity: scrolled ? 0 : 1,
-            }}
-          >
-            <div className="flex items-center justify-between py-8">
-              <Link href="/">
-                <Image
-                  src="/images/kind-sisters-logo.svg"
-                  alt="Kind Sisters — Creating Space for Community"
-                  width={720}
-                  height={320}
-                  className="w-auto transition-all duration-500"
-                  style={{ height: '12rem' }}
-                  priority
-                />
-              </Link>
-              <DonateButton size="lg" />
-            </div>
-          </div>
-
           {/* Compact state: Logo left, nav + donate right */}
           <div
             className="flex items-center justify-between transition-all duration-500"
@@ -79,6 +52,7 @@ export default function Header() {
                 width={180}
                 height={80}
                 className="h-14 w-auto"
+                priority
               />
             </Link>
 

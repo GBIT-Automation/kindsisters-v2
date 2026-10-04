@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Essentials Relief Bags",
   description:
-    "Food and hygiene essentials delivered to families in need through local schools in Perth — discreetly, respectfully, and with care.",
+    "Food and hygiene essentials delivered to families in need through local schools in Perth — discreetly, respectfully and with care.",
 };
 
 const nonPerishables = [
@@ -64,7 +64,7 @@ export default function EssentialsReliefBagsPage() {
               Our Essentials Relief Bags program is at the heart of what Kind
               Sisters does. We pack and deliver bags filled with food and
               hygiene products to families experiencing hardship, working
-              directly through local schools in the Mirrabooka area.
+              directly through local schools in disadvantaged areas of Perth.
             </p>
             <p>
               Schools identify families who are struggling quietly —

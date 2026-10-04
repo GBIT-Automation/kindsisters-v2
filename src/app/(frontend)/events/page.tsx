@@ -78,8 +78,7 @@ export default async function EventsPage() {
               <h3 className="font-serif text-2xl text-trust mb-3">Stay tuned</h3>
               <p className="text-trust-soft text-lg mb-6 max-w-md mx-auto">
                 We&apos;re planning our next Women&apos;s Community Connect
-                event. Follow us on social media or subscribe to our newsletter
-                to be the first to know.
+                event. Follow us on social media to be the first to know.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a

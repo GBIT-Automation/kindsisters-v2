@@ -9,7 +9,7 @@ const featuredPrograms = [
     href: "/projects/essentials-relief-bags",
     photo: "/images/gallery/img_2446.jpg",
     description:
-      "We deliver bags filled with food and hygiene products to families in need through local schools in the Mirrabooka area. These bags provide dignity and relief when it matters most.",
+      "We deliver bags filled with food and hygiene products to families in need through local schools in disadvantaged areas of Perth. These bags provide dignity and relief when it matters most.",
   },
   {
     title: "Women's Community Connect",
@@ -29,12 +29,13 @@ const supportNetwork = [
   { name: "MercyCare", phone: null, website: "https://www.mercycare.com.au/" },
   { name: "Uniting WA", phone: null, website: "https://unitingwa.org.au/" },
   { name: "Centrecare", phone: "9325 6644", website: null },
-  { name: "Ruah", phone: "13 78 24", website: null },
+  { name: "Ruah", phone: null, website: "https://ruah.org.au/" },
   { name: "Mission Australia", phone: null, website: "https://www.missionaustralia.com.au/" },
   { name: "Foodbank WA", phone: null, website: "https://www.foodbank.org.au/WA/" },
-  { name: "MCCO", phone: null, website: null },
-  { name: "No Limits Perth", phone: null, website: null },
+  { name: "MCCO", phone: null, website: "https://www.mcco.org.au/" },
+  { name: "No Limits Perth", phone: null, website: "https://www.nolimitsperth.org.au/" },
   { name: "Family Line", phone: "1800 050 321", website: null },
+  { name: "Family Helpline", phone: "9223 1100", website: null },
 ];
 
 // Revalidate so photos Jody publishes in the CMS appear on the site within
@@ -66,7 +67,7 @@ export default async function ProjectsPage() {
       <section className="py-16 md:py-24 bg-kindness-whisper">
         <div className="mx-auto max-w-5xl px-6 text-center">
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-trust">
-            Our Programs
+            Our Projects
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-trust-soft">
             Practical support, genuine connection, and community strength

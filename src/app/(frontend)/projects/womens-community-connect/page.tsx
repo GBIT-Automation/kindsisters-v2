@@ -17,17 +17,17 @@ const serviceAreas = [
   {
     title: "Practical Assistance",
     description:
-      "Providing access to everyday essentials, emergency relief items, and tangible support that helps women and their families through difficult times.",
+      "Providing access to everyday essentials, emergency relief items and tangible support that helps women and their families through difficult times.",
   },
   {
     title: "Information & Referrals",
     description:
-      "Connecting women with trusted local agencies, services, and resources so they know where to turn when they need specialist help.",
+      "Connecting women with trusted local agencies, services and resources so they know where to turn when they need specialist help.",
   },
   {
     title: "Capacity Building",
     description:
-      "Offering workshops and learning opportunities that help women develop new skills, build confidence, and strengthen their independence.",
+      "Offering workshops and learning opportunities that help women develop new skills, build confidence and strengthen their independence.",
   },
   {
     title: "Therapeutic Activities",
@@ -66,7 +66,7 @@ export default function WomensCommunityConnectPage() {
         <div className="mx-auto max-w-4xl px-6">
           <div className="space-y-6 text-trust-soft text-lg leading-relaxed">
             <p>
-              Women&apos;s Community Connect is where belonging begins. Our
+              Women&apos;s Community Connects are where belonging begins. Our
               regular events bring women from all walks of life together in
               a warm, supportive environment. Whether someone is new to the
               area, going through a challenging time, or simply looking for

@@ -40,7 +40,7 @@ export default async function Home() {
             <div className="flex flex-wrap gap-4">
               <DonateButton size="lg" variant="primary" />
               <DonateButton size="lg" variant="outline" href="/projects" className="border-white text-white hover:bg-white hover:text-[var(--trust)]">
-                Our Programs
+                Our Projects
               </DonateButton>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default async function Home() {
           <SectionReveal>
             <p className="text-[var(--kindness)] font-semibold text-sm tracking-wider uppercase mb-4">Our Mission</p>
             <p className="font-[var(--font-dm-serif)] text-2xl md:text-3xl text-[var(--trust)] leading-snug">
-              To improve the quality of life of women, children and families by supporting essential needs, creating a sense of belonging in community and building personal capacity.
+              To improve the quality of life of women, children and families by supporting essential needs, building personal capacity and creating a sense of belonging in community.
             </p>
           </SectionReveal>
         </div>
@@ -87,7 +87,7 @@ export default async function Home() {
                   She arrived in Australia fleeing violence. She doesn&apos;t have toothpaste. Her children go to school without breakfast. She&apos;s too proud to ask for help — and too exhausted to know where to find it.
                 </p>
                 <p className="text-[var(--trust-soft)] text-lg leading-relaxed mb-6">
-                  <strong className="text-[var(--trust)]">She&apos;s not a statistic. She&apos;s your neighbour.</strong> And right now, there are hundreds of women just like her across the City of Stirling and surrounding suburbs.
+                  <strong className="text-[var(--trust)]">She&apos;s not a statistic. She&apos;s your neighbour.</strong> And right now, there are hundreds of women just like her across Perth.
                 </p>
                 <div className="bg-[var(--kindness-whisper)] rounded-xl p-6 border-l-4 border-[var(--kindness)]">
                   <p className="text-[var(--trust)] font-medium italic text-lg">
@@ -97,9 +97,12 @@ export default async function Home() {
                 </div>
               </div>
               <div className="relative">
+                {/* Jody (4 Oct 2026) asked for a photo that matches the Why we exist text. Kind Sisters' own
+                    photo of relief bags packed for 40 families: the help reaching women like the one described,
+                    without showing any recipient. Replaces a stock photo of a mother and daughter at home. */}
                 <Image
-                  src="/images/hero/mother-daughter-asian.jpg"
-                  alt="A daughter hugging her mother — the kind of moment your donation protects"
+                  src="/images/gallery/40-families-first-ever.jpg"
+                  alt="Green Essentials Relief Bags of food and hygiene products, packed and ready for 40 families"
                   width={600}
                   height={450}
                   className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
@@ -135,7 +138,7 @@ export default async function Home() {
                   <h3 className="absolute bottom-4 left-6 text-white text-2xl font-[var(--font-dm-serif)]">Essentials Relief Bags</h3>
                 </div>
                 <div className="p-6">
-                  <p className="text-[var(--trust-soft)] leading-relaxed">Food and hygiene essentials delivered directly to families in need through local schools — discreetly, respectfully, and with care.</p>
+                  <p className="text-[var(--trust-soft)] leading-relaxed">Food and hygiene essentials delivered directly to families in need through local schools — discreetly, respectfully and with care.</p>
                 </div>
               </a>
             </SectionReveal>
@@ -148,7 +151,7 @@ export default async function Home() {
                   <h3 className="absolute bottom-4 left-6 text-white text-2xl font-[var(--font-dm-serif)]">Women&apos;s Community Connect</h3>
                 </div>
                 <div className="p-6">
-                  <p className="text-[var(--trust-soft)] leading-relaxed">Safe, inclusive events where women build connections, access support services, and develop confidence through community.</p>
+                  <p className="text-[var(--trust-soft)] leading-relaxed">Safe, inclusive events where women access support services, build personal capacity and strengthen community connections.</p>
                 </div>
               </a>
             </SectionReveal>

@@ -69,7 +69,7 @@ Kind Sisters exists because no family in our community should go without. One ba
 
 That's not a faraway statistic. That's families in our suburbs — parents choosing between groceries and rent, children arriving at school without breakfast.
 
-Kind Sisters is here to change that. Through our Essentials Relief Bags program, we deliver food and hygiene products directly to families in need — discreetly, respectfully, and with care.
+Kind Sisters is here to change that. Through our Essentials Relief Bags program, we deliver food and hygiene products directly to families in need — discreetly, respectfully and with care.
 
 💛 You can help. Donate, volunteer, or share this post: kindsisters.org.au/donate`,
     linkedin: `One in eight Australians experiences food insecurity — and the families affected are often the ones we'd never expect.

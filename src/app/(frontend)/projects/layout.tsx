@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Programs",
+  title: "Our Projects",
   description:
     "Essentials Relief Bags and Women's Community Connect — Kind Sisters' two programs supporting vulnerable families in Perth.",
 };
