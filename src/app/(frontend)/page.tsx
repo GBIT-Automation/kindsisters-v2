@@ -97,12 +97,13 @@ export default async function Home() {
                 </div>
               </div>
               <div className="relative">
-                {/* Jody (4 Oct 2026) asked for a photo that matches the Why we exist text. Kind Sisters' own
-                    photo of relief bags packed for 40 families: the help reaching women like the one described,
-                    without showing any recipient. Replaces a stock photo of a mother and daughter at home. */}
+                {/* Jody (4 Oct 2026) asked for a photo that matches the Why we exist text; Gavin chose this one.
+                    Real scanned film photo, not AI: Alexey Demidov, Unsplash (Unsplash License, free use, credit
+                    optional). https://unsplash.com/photos/a-woman-holding-a-cup-looking-out-a-window-MGj66mX6WQg
+                    A model, not a Kind Sisters recipient. */}
                 <Image
-                  src="/images/gallery/40-families-first-ever.jpg"
-                  alt="Green Essentials Relief Bags of food and hygiene products, packed and ready for 40 families"
+                  src="/images/hero/mum-mug-window.jpg"
+                  alt="A woman holding a mug, looking out of a window, deep in thought"
                   width={600}
                   height={450}
                   className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
