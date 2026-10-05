@@ -42,7 +42,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Compact state: Logo left, nav + donate right */}
           <div
-            className="flex items-center justify-between transition-all duration-500 h-20 md:h-28"
+            className="flex items-center justify-between transition-all duration-500 h-20 lg:h-28"
             style={{ opacity: scrolled ? 1 : 0, overflow: scrolled ? 'visible' : 'hidden' }}
           >
             {/* Compact Logo */}
@@ -52,13 +52,13 @@ export default function Header() {
                 alt="Kind Sisters — Creating Space for Community"
                 width={304}
                 height={157}
-                className="h-16 md:h-24 w-auto"
+                className="h-16 lg:h-24 w-auto"
                 priority
               />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="hidden lg:flex items-center gap-6">
               {navLinks.map((link) =>
                 link.hasDropdown ? (
                   <div
@@ -123,7 +123,7 @@ export default function Header() {
             {/* Mobile Hamburger */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-[var(--trust)]"
+              className="lg:hidden p-2 text-[var(--trust)]"
               aria-label="Toggle navigation"
               aria-expanded={isOpen}
             >
@@ -146,7 +146,7 @@ export default function Header() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden bg-white border-t border-[var(--border-subtle)]"
+              className="lg:hidden overflow-hidden bg-white border-t border-[var(--border-subtle)]"
             >
               <div className="px-4 py-4 space-y-1">
                 {navLinks.map((link) => (
