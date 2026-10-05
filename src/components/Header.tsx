@@ -15,7 +15,8 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   // Jody (4 Oct 2026): keep the banner stable. The header used to start as a large
   // centred logo and shrink on scroll, which shifted the page; it now stays in the
-  // compact layout at all times.
+  // compact layout at all times. Jody (5 Oct 2026): logo bigger now the large
+  // version is gone.
   const scrolled = true;
   const [projectsOpen, setProjectsOpen] = useState(false);
 
@@ -41,17 +42,17 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Compact state: Logo left, nav + donate right */}
           <div
-            className="flex items-center justify-between transition-all duration-500"
-            style={{ height: scrolled ? '5rem' : '0px', opacity: scrolled ? 1 : 0, overflow: scrolled ? 'visible' : 'hidden' }}
+            className="flex items-center justify-between transition-all duration-500 h-20 md:h-28"
+            style={{ opacity: scrolled ? 1 : 0, overflow: scrolled ? 'visible' : 'hidden' }}
           >
             {/* Compact Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image
                 src="/images/kind-sisters-logo.svg"
                 alt="Kind Sisters — Creating Space for Community"
-                width={180}
-                height={80}
-                className="h-14 w-auto"
+                width={304}
+                height={157}
+                className="h-16 md:h-24 w-auto"
                 priority
               />
             </Link>
