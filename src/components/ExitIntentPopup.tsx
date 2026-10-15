@@ -79,7 +79,7 @@ export default function ExitIntentPopup() {
               Right now, a mum in Perth is choosing between buying food or toothpaste for her kids.
             </p>
             <p className="text-[var(--trust)] font-medium leading-relaxed mb-6">
-              <strong className="text-[var(--warmth)]">$10</strong> means her child goes to school tomorrow with a full stomach and a smile. That&apos;s less than a coffee.
+              <strong className="text-[var(--warmth)]">$15</strong> means her child goes to school tomorrow clean, fed and ready to learn.
             </p>
 
             <Link

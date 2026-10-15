@@ -58,8 +58,8 @@ export default function AboutPage() {
             </p>
             <p>
               Our vision and strategic direction developed over time through
-              our founder&apos;s work with women and children in the Mirrabooka
-              area and the severe impact of the cost-of-living crisis. Women
+              our founder&apos;s work with women and children in the City of
+              Stirling and surrounding areas and the severe impact of the cost-of-living crisis. Women
               were seeking connection and safe community, a desire to support
               each other, to be seen, heard and valued and take active steps
               towards improving their lives and making a positive impact to the

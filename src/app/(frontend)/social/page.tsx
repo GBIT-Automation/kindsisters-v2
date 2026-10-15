@@ -250,9 +250,9 @@ Donate: kindsisters.org.au/donate
     id: 8,
     date: "Wed 20 May",
     pillar: "Awareness",
-    title: "40+ schools across Perth",
+    title: "10 schools across Perth",
     image: "/social/may/08-may20-did-you-know.png",
-    instagram: `Did you know? Kind Sisters works with 40+ schools across the City of Stirling and surrounding suburbs. 🏫
+    instagram: `Did you know? Kind Sisters works with 10 schools across the City of Stirling and surrounding suburbs. 🏫
 
 Our school partners are the backbone of what we do. Support workers identify families who are struggling quietly — parents too proud to ask for help, children arriving without basic supplies.
 
@@ -261,14 +261,14 @@ We deliver Essentials Relief Bags directly through schools, so support reaches f
 💛 Swipe to learn more about how it works.
 
 #KindSisters #CityOfStirling #PerthSchools #EssentialsReliefBags #CommunitySupport #CreatingSpaceForCommunity`,
-    facebook: `🏫 Did you know? Kind Sisters works with over 40 schools across the City of Stirling and surrounding suburbs.
+    facebook: `🏫 Did you know? Kind Sisters works with 10 schools across the City of Stirling and surrounding suburbs.
 
 Our school partners are the backbone of what we do. School support workers identify families who are struggling quietly — and we deliver Essentials Relief Bags directly to those families, discreetly and with dignity.
 
 It's a partnership built on trust, and it means no family has to feel embarrassed about needing help.
 
 👉 Learn more: kindsisters.org.au/projects/essentials-relief-bags`,
-    linkedin: `Kind Sisters' Essentials Relief Bags program operates in partnership with over 40 schools across Perth's City of Stirling and surrounding areas.
+    linkedin: `Kind Sisters' Essentials Relief Bags program operates in partnership with 10 schools across Perth's City of Stirling and surrounding areas.
 
 This school-based delivery model is central to our approach. School support workers have direct visibility into which families are experiencing hardship, enabling targeted, discreet support that removes the stigma often associated with seeking help.
 
@@ -290,7 +290,7 @@ In 2015, Jody saw families in her community struggling quietly. Parents choosing
 
 She couldn't look away. So she started packing bags.
 
-What began as one woman's determination has grown into an organisation serving 500+ families across 40+ schools in the City of Stirling.
+What began as one woman's determination has grown into an organisation serving 500+ families across 10 schools in the City of Stirling.
 
 Jody's belief is simple: no family in our community should go without. 🤍
 
@@ -299,7 +299,7 @@ Jody's belief is simple: no family in our community should go without. 🤍
 
 In 2015, Jody saw families in her community struggling quietly — parents choosing between groceries and toiletries, children arriving at school without basic supplies. She couldn't look away.
 
-What started as one woman's determination to help has grown into an organisation that has supported over 500 families across more than 40 schools in the City of Stirling.
+What started as one woman's determination to help has grown into an organisation that has supported over 500 families across 10 schools in the City of Stirling.
 
 "I started Kind Sisters with a simple belief: no family in our community should go without essentials. What began as packing a few bags has become something truly special — and that's because of the incredible volunteers and supporters who share this vision."
 
@@ -308,7 +308,7 @@ Jody continues to lead Kind Sisters as Director, driving the mission forward eve
 
 Jody founded Kind Sisters in 2015 with a clear vision: no family in Perth's City of Stirling should go without everyday essentials. Her grassroots approach — partnering directly with local schools to identify and support families in need — has grown into a trusted community organisation.
 
-Under her leadership, Kind Sisters has supported over 500 families and delivered more than 1,000 Essentials Relief Bags, working with 40+ schools and a network of community partners.
+Under her leadership, Kind Sisters has supported over 500 families and delivered more than 1,000 Essentials Relief Bags, working with 10 schools and a network of community partners.
 
 kindsisters.org.au/about
 

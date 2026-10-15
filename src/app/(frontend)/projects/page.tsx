@@ -34,7 +34,6 @@ const supportNetwork = [
   { name: "Foodbank WA", phone: null, website: "https://www.foodbank.org.au/WA/" },
   { name: "MCCO", phone: null, website: "https://www.mcco.org.au/" },
   { name: "No Limits Perth", phone: null, website: "https://www.nolimitsperth.org.au/" },
-  { name: "Family Line", phone: "1800 050 321", website: null },
   { name: "Family Helpline", phone: "9223 1100", website: null },
 ];
 

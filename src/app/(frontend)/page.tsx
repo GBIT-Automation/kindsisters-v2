@@ -49,7 +49,7 @@ export default async function Home() {
           <div className="grid grid-cols-3 gap-4 mt-12 max-w-xl">
             {[
               { value: '500+', label: 'Families Supported' },
-              { value: '40+', label: 'Schools Reached' },
+              { value: '10', label: 'Schools Reached' },
               { value: '1,000+', label: 'Relief Bags Delivered' },
             ].map((stat) => (
               <div key={stat.label} className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 text-center border border-white/10">
@@ -215,9 +215,9 @@ export default async function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
               {[
-                { amount: '$10', impact: 'A child goes to school with a full belly and a toothbrush' },
-                { amount: '$25', impact: 'A mum can wash her children\'s clothes and cook them dinner' },
-                { amount: '$50', impact: 'A whole family receives a bag of essentials delivered with dignity' },
+                { amount: '$15', impact: 'A child goes to school clean, fed and ready to learn' },
+                { amount: '$30', impact: 'A mum can wash her children\'s clothes and prepare a meal' },
+                { amount: '$50', impact: 'A whole family receives bags of essentials delivered with dignity' },
               ].map((item) => (
                 <div key={item.amount} className="bg-white/15 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <p className="text-3xl font-bold text-white mb-2">{item.amount}</p>

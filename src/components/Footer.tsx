@@ -9,7 +9,7 @@ export default function Footer() {
           {/* ACNC Badge */}
           <div className="text-center md:text-left">
             <Image
-              src="/images/icons/acnc-badge.jpg"
+              src="/images/icons/acnc-badge-reverse.png"
               alt="ACNC Registered Charity"
               width={80}
               height={80}
