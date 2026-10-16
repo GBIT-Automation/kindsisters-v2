@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getPayloadClient } from "@/lib/payload";
 
@@ -23,14 +24,30 @@ export default async function TestimonialsPage() {
     <div className="bg-earth">
       {/* Hero */}
       <section className="py-16 md:py-24 bg-kindness-whisper">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-trust">
-            Stories of Hope
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-trust-soft">
-            Real voices from the people whose lives have been touched by
-            Kind Sisters
-          </p>
+        <div className="mx-auto max-w-5xl px-6 grid gap-10 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="text-center md:text-left">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-trust">
+              Stories of Hope
+            </h1>
+            <p className="mt-4 max-w-2xl mx-auto md:mx-0 text-lg text-trust-soft">
+              Real voices from the people whose lives have been touched by
+              Kind Sisters
+            </p>
+          </div>
+          {/* Real recipients; Jody altered faces, clothes and hair (15 Oct 2026). */}
+          <figure className="mx-auto w-full max-w-xs md:max-w-sm">
+            <Image
+              src="/images/gallery/mother-child-relief-bags.jpg"
+              alt="A mother and her son in a park with Kind Sisters relief bags at their feet"
+              width={843}
+              height={1264}
+              preload
+              className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
+            />
+            <figcaption className="mt-3 text-center text-sm text-trust-muted">
+              Photo changed to protect the family&apos;s privacy
+            </figcaption>
+          </figure>
         </div>
       </section>
 
