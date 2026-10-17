@@ -45,7 +45,7 @@ export default async function TestimonialsPage() {
               className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
             />
             <figcaption className="mt-3 text-center text-sm text-trust-muted">
-              Photo changed to protect the family&apos;s privacy
+              Image changed using AI to protect the family&apos;s privacy
             </figcaption>
           </figure>
         </div>
