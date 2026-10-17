@@ -249,7 +249,6 @@ export default async function Home() {
                     { name: 'Sisters of Charity Inc', logo: '/images/partners/sisters-of-charity-logo.png', url: 'https://www.sistersofcharity.org.au', heightClass: 'h-24' },
                     { name: 'Street Smart Australia', logo: '/images/partners/street-smart-logo.jpg', url: 'https://streetsmartaustralia.org' },
                     { name: 'Relate Counselling', logo: '/images/partners/relate-counselling-logo.png', url: 'https://www.relatecounselling.com.au' },
-                    { name: 'SJM Bookkeeping Pty Ltd', logo: null, url: null },
                     { name: 'Inner Wheel Society Scarborough', logo: '/images/partners/inner-wheel-scarborough-logo.png', url: 'https://innerwheelaustralia.org.au/clubs-directory/scarborough/' },
                     { name: 'Mens Shed Wanneroo', logo: '/images/partners/mens-shed-wanneroo-logo.webp', url: 'https://mensshed.org/shed/mens-shed-wanneroo' },
                     { name: 'Sudbury Community House', logo: '/images/partners/sudbury-community-house-logo.png', url: 'https://www.sudburyhouse.org.au/' },
