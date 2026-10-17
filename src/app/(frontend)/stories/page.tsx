@@ -72,7 +72,9 @@ export default async function TestimonialsPage() {
         </div>
       </section>
 
-      {/* Testimonials Grid */}
+      {/* Testimonials Grid. Hidden until at least one story is published in /admin,
+          otherwise it leaves an empty band on the page. */}
+      {testimonials.length > 0 && (
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid gap-8 md:grid-cols-2">
@@ -104,6 +106,7 @@ export default async function TestimonialsPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* CTA */}
       <section className="py-16 md:py-20 bg-warmth-glow text-center">
