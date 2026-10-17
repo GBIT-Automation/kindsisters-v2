@@ -34,18 +34,18 @@ export default async function TestimonialsPage() {
               Kind Sisters
             </p>
           </div>
-          {/* Real recipients; Jody altered faces, clothes and hair (15 Oct 2026). */}
+          {/* Two KS volunteers on a school delivery; Jody has their consent (17 Oct 2026). */}
           <figure className="mx-auto w-full max-w-xs md:max-w-sm">
             <Image
-              src="/images/gallery/mother-child-relief-bags.jpg"
-              alt="A mother and her son in a park with Kind Sisters relief bags at their feet"
-              width={843}
-              height={1264}
+              src="/images/gallery/volunteers-school-delivery.jpg"
+              alt="Two Kind Sisters volunteers with trolleys of relief bags on a school delivery"
+              width={900}
+              height={1200}
               preload
               className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
             />
             <figcaption className="mt-3 text-center text-sm text-trust-muted">
-              Image changed using AI to protect the family&apos;s privacy
+              Two of our volunteers on a school delivery
             </figcaption>
           </figure>
         </div>
