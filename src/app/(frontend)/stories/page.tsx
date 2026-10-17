@@ -24,27 +24,48 @@ export default async function TestimonialsPage() {
     <div className="bg-earth">
       {/* Hero */}
       <section className="py-16 md:py-24 bg-kindness-whisper">
-        <div className="mx-auto max-w-5xl px-6 grid gap-10 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="text-center md:text-left">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-trust">
-              Stories of Hope
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto md:mx-0 text-lg text-trust-soft">
-              Real voices from the people whose lives have been touched by
-              Kind Sisters
-            </p>
-          </div>
-          {/* Two KS volunteers on a school delivery; Jody has their consent (17 Oct 2026). */}
-          <figure className="mx-auto w-full max-w-xs md:max-w-sm">
-            <Image
-              src="/images/gallery/volunteers-school-delivery.jpg"
-              alt="Two Kind Sisters volunteers with trolleys of relief bags on a school delivery"
-              width={900}
-              height={1200}
-              preload
-              className="rounded-2xl shadow-[var(--shadow-lg)] object-cover w-full"
-            />
-            <figcaption className="mt-3 text-center text-sm text-trust-muted">
+        <div className="mx-auto max-w-5xl px-6 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-trust">
+            Stories of Hope
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-trust-soft">
+            Real voices from the people whose lives have been touched by
+            Kind Sisters
+          </p>
+          {/* A loose pile of prints: KS's own delivery photos underneath, and on top two
+              KS volunteers on a school delivery (Jody has their consent, 17 Oct 2026). */}
+          <figure className="mt-12 mx-auto w-full max-w-[210px] md:max-w-[280px]">
+            <div className="relative">
+              {[
+                { src: "/images/gallery/img_7942.jpg", tilt: "rotate-[16deg] translate-x-9 md:translate-x-24 translate-y-8 scale-90" },
+                { src: "/images/gallery/1661576443217546.jpg", tilt: "-rotate-[17deg] -translate-x-9 md:-translate-x-24 translate-y-10 scale-90" },
+                { src: "/images/gallery/40-families-first-ever.jpg", tilt: "-rotate-[11deg] -translate-x-8 md:-translate-x-20 -translate-y-1" },
+                { src: "/images/gallery/img_2446.jpg", tilt: "rotate-[10deg] translate-x-8 md:translate-x-20 -translate-y-3" },
+                { src: "/images/gallery/hamper.jpg", tilt: "-rotate-[5deg] translate-x-5 md:translate-x-10 translate-y-5" },
+                { src: "/images/gallery/bags-ready-for-delivery.jpeg", tilt: "rotate-[5deg] -translate-x-4 md:-translate-x-8 -translate-y-4" },
+              ].map((print) => (
+                <div
+                  key={print.src}
+                  aria-hidden="true"
+                  className={`absolute inset-0 bg-white p-2 pb-8 rounded-sm shadow-[var(--shadow-md)] ${print.tilt}`}
+                >
+                  <div className="relative h-full w-full overflow-hidden">
+                    <Image src={print.src} alt="" fill sizes="280px" className="object-cover" />
+                  </div>
+                </div>
+              ))}
+              <div className="relative bg-white p-2 pb-8 rounded-sm shadow-[var(--shadow-lg)] -rotate-[2deg]">
+                <Image
+                  src="/images/gallery/volunteers-school-delivery.jpg"
+                  alt="Two Kind Sisters volunteers with trolleys of relief bags on a school delivery"
+                  width={900}
+                  height={1200}
+                  preload
+                  className="w-full aspect-[3/4] object-cover"
+                />
+              </div>
+            </div>
+            <figcaption className="mt-16 text-xs text-trust-muted">
               Two of our volunteers on a school delivery
             </figcaption>
           </figure>
