@@ -77,6 +77,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Message is too long' }, { status: 400 });
   }
 
+  // Honeypot: the hidden "website" field is only ever filled in by bots.
+  // Pretend it worked so they move on, but send nothing.
+  if (typeof body?.website === 'string' && body.website.trim() !== '') {
+    return NextResponse.json({ success: true });
+  }
+
   // Email format validation
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });

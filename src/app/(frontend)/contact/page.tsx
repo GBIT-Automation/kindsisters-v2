@@ -53,7 +53,11 @@ export default function ContactPage() {
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
+          // "website" is a hidden honeypot field: people never see it, bots fill it in
+          body: JSON.stringify({
+            ...formData,
+            website: ((e.currentTarget as HTMLFormElement).elements.namedItem('website') as HTMLInputElement | null)?.value ?? '',
+          }),
         });
         if (res.ok) {
           setSubmitted(true);
@@ -182,6 +186,10 @@ export default function ContactPage() {
                   className="space-y-5"
                   noValidate
                 >
+                  <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+                    <label htmlFor="website">Leave this field empty</label>
+                    <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+                  </div>
                   <div>
                     <label
                       htmlFor="name"
