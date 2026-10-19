@@ -27,6 +27,8 @@ export default function ContactPage() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sendError, setSendError] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -45,6 +47,8 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
+      setSending(true);
+      setSendError(false);
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
@@ -53,10 +57,15 @@ export default function ContactPage() {
         });
         if (res.ok) {
           setSubmitted(true);
+        } else {
+          setSendError(true);
         }
       } catch {
-        // Silently fail — form still shows success for UX
-        setSubmitted(true);
+        // Never show "sent" for a message that didn't go: point people to
+        // the email address instead.
+        setSendError(true);
+      } finally {
+        setSending(false);
       }
     }
   };
@@ -277,11 +286,22 @@ export default function ContactPage() {
                     )}
                   </div>
 
+                  {sendError && (
+                    <p role="alert" className="text-sm text-trust">
+                      Sorry, your message couldn&apos;t be sent just now. Please email us at{" "}
+                      <a href="mailto:info@kindsisters.org.au" className="underline text-kindness">
+                        info@kindsisters.org.au
+                      </a>
+                      .
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="rounded-[var(--radius-full)] bg-kindness px-8 py-3 font-semibold text-white hover:bg-kindness-deep transition-colors"
+                    disabled={sending}
+                    className="rounded-[var(--radius-full)] bg-kindness px-8 py-3 font-semibold text-white hover:bg-kindness-deep transition-colors disabled:opacity-60"
                   >
-                    Send Message
+                    {sending ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               )}

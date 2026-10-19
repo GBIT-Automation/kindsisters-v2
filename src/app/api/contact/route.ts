@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { getPayloadClient } from '@/lib/payload';
 
 const RATE_LIMIT_WINDOW = 60_000; // 1 minute
 const RATE_LIMIT_MAX = 5;
@@ -81,8 +82,28 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
   }
 
-  // TODO: VERIFY — Wire up email sending (e.g. Resend, SendGrid, or Nodemailer)
-  // Submission received successfully — no PII logged
+  // Sent through Payload's email adapter (payload.config.ts). Without SMTP
+  // configured there is nowhere for the message to go, so say so rather
+  // than telling the visitor it was sent.
+  if (!process.env.SMTP_HOST) {
+    return NextResponse.json({ error: 'Email is not set up' }, { status: 503 });
+  }
+
+  const clean = (s: string) => s.replace(/[\r\n]+/g, ' ').trim();
+
+  try {
+    const payload = await getPayloadClient();
+    await payload.sendEmail({
+      to: process.env.CONTACT_TO || 'info@kindsisters.org.au',
+      replyTo: email,
+      subject: `Website enquiry: ${clean(subject)}`,
+      text: `Name: ${clean(name)}\nEmail: ${email}\nSubject: ${clean(subject)}\n\n${message}`,
+    });
+  } catch {
+    // No PII logged
+    console.error('Contact form: email send failed');
+    return NextResponse.json({ error: 'Could not send' }, { status: 502 });
+  }
 
   return NextResponse.json({ success: true });
 }
