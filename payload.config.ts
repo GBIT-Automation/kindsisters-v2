@@ -16,12 +16,14 @@ import { Testimonials } from './src/collections/Testimonials'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// Outgoing email for password resets and admin invites. Off until SMTP_HOST
+// Outgoing email for the contact form, password resets and admin invites,
+// sent through SMTP2GO (verified sender domain kindsisters.org.au). The From
+// address webform@ has no mailbox: replies go to Reply-To, bounces to SMTP2GO. Off until SMTP_HOST
 // is set in Coolify, so a deploy without credentials behaves exactly as
 // before (Payload logs emails to the console instead of sending them).
 const email = process.env.SMTP_HOST
   ? nodemailerAdapter({
-      defaultFromAddress: process.env.SMTP_FROM_ADDRESS || 'info@kindsisters.org.au',
+      defaultFromAddress: process.env.SMTP_FROM_ADDRESS || 'webform@kindsisters.org.au',
       defaultFromName: process.env.SMTP_FROM_NAME || 'Kind Sisters',
       transportOptions: {
         host: process.env.SMTP_HOST,

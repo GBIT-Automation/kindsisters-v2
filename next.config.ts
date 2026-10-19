@@ -74,6 +74,17 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/**': ['./node_modules/sharp/**/*', './node_modules/@libsql/**/*'],
   },
+  // The live site answers on kindsisters.org.au only. www and the old
+  // ks.gbit.au review address send people (and Google) there for good.
+  async redirects() {
+    if (!isProductionSite) return [];
+    return ['www.kindsisters.org.au', 'ks.gbit.au'].map((host) => ({
+      source: '/:path*',
+      has: [{ type: 'host' as const, value: host }],
+      destination: `${PRODUCTION_SITE_URL}/:path*`,
+      permanent: true,
+    }));
+  },
   async headers() {
     return [
       {
