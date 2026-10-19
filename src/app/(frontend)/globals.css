@@ -158,17 +158,11 @@ h1, h2, h3, h4 {
 }
 
 .animate-scroll-x {
-  animation: scroll-x 75s linear infinite;
+  animation: scroll-x 50s linear infinite;
 }
 
 .animate-scroll-x:hover {
   animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-scroll-x {
-    animation: none;
-  }
 }
 
 /* ---- Section Blending ---- */
