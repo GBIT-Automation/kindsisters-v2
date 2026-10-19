@@ -64,6 +64,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Don't advertise the framework in an X-Powered-By header.
+  poweredByHeader: false,
   // Standalone build for VPS deploy (BinaryLane): ships a self-contained
   // server.js with only the traced dependencies. sharp + the sqlite driver are
   // native, so make sure they're traced into the bundle.

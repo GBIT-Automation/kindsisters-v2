@@ -18,8 +18,10 @@ export const Users: CollectionConfig = {
     delete: isAdmin,
     // Admins read/update anyone; everyone else is limited to their own record
     // (required so /api/users/me and the account page work for editors).
+    // Anonymous requests are refused outright (an undefined id made the query
+    // throw a 500 rather than returning a clean 403).
     read: ({ req: { user } }) =>
-      user?.role === 'admin' ? true : { id: { equals: user?.id } },
+      !user ? false : user.role === 'admin' ? true : { id: { equals: user.id } },
     update: ({ req: { user } }) =>
       user?.role === 'admin' ? true : { id: { equals: user?.id } },
   },
