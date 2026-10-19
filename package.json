@@ -13,6 +13,7 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@payloadcms/db-sqlite": "^3.85.2",
+    "@payloadcms/email-nodemailer": "3.85.2",
     "@payloadcms/next": "^3.85.2",
     "@payloadcms/richtext-lexical": "^3.85.2",
     "framer-motion": "^12.38.0",

@@ -1,6 +1,7 @@
 import { buildConfig } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -14,6 +15,25 @@ import { Events } from './src/collections/Events'
 import { Testimonials } from './src/collections/Testimonials'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// Outgoing email for password resets and admin invites. Off until SMTP_HOST
+// is set in Coolify, so a deploy without credentials behaves exactly as
+// before (Payload logs emails to the console instead of sending them).
+const email = process.env.SMTP_HOST
+  ? nodemailerAdapter({
+      defaultFromAddress: process.env.SMTP_FROM_ADDRESS || 'info@kindsisters.org.au',
+      defaultFromName: process.env.SMTP_FROM_NAME || 'Kind Sisters',
+      transportOptions: {
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT || 587),
+        secure: process.env.SMTP_PORT === '465',
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      },
+    })
+  : undefined
 
 export default buildConfig({
   admin: {
@@ -35,6 +55,7 @@ export default buildConfig({
     },
   },
   editor: lexicalEditor(),
+  email,
   collections: [Users, Media, Gallery, Blog, Events, Testimonials],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
